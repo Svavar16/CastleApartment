@@ -28,9 +28,25 @@
       </div>
     </nav>
     <div class="container">
-        {% block content %}
+        <div class="carousel">
+            {% block content %}
 
-        {% endblock %}
+            {% endblock %}
+        </div>
+        <div class="search">
+            <p>search place</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="apartment-size"><p>apartment sice</p></div>
+                <div class="apartment-prize"><p>apartment prize</p></div>
+            </div>
+            <div class="col-lg-6"><p>search</p></div>
+        </div>
+        <div class="row">
+            <div><p>sell apartment</p></div>
+            <div><p>new listings</p></div>
+        </div>
     </div>
     <!-- Personal js -->
     <script src=""></script>
@@ -40,6 +56,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 <footer>
-    <h2>Castle Apartments</h2>
+    <p class="text-center">{% now "Y" %}, Castle Apartments<br> All right reserved</p>
 </footer>
 </html>
