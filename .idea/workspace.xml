@@ -36,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="459">
+              <caret line="17" column="18" lean-forward="true" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -80,11 +80,6 @@
             <path>
               <item name="CastleApartments" type="b2602c69:ProjectViewProjectNode" />
               <item name="CastleApartments" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CastleApartments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CastleApartments" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -153,12 +148,12 @@
       <workItem from="1557008057357" duration="2999000" />
       <workItem from="1557049578460" duration="123000" />
       <workItem from="1557133528549" duration="21000" />
-      <workItem from="1557133561881" duration="608000" />
+      <workItem from="1557133561881" duration="905000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5063000" />
+    <option name="totallyTimeSpent" value="5360000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -216,8 +211,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="459">
+          <caret line="17" column="18" lean-forward="true" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
         </state>
       </provider>
     </entry>
