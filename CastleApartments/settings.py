@@ -77,7 +77,11 @@ WSGI_APPLICATION = 'CastleApartments.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'dwwrdrnf',
+        'USER': 'dwwrdrnf',
+        'PASSWORD': 'x-jg6672RCkfH0G_7wrYbzLcBX-Vmz0S',
+        'HOST': 'dumbo.db.elephantsql.com',
+        'PORT': '5432'
     }
 }
 
