@@ -120,7 +120,7 @@ dmypy.json
 .pyre/
 
 ### Python Patch ###
-
+.venv/
 
 # If you are using PyCharm # 
 .idea//workspace.xml 
