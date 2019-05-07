@@ -39,8 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user.apps.UserConfig',
     'apartments.apps.ApartmentsConfig',
-    'creditcarddetails.apps.CreditcarddetailsConfig',
-    'location.apps.LocationConfig',
 ]
 
 MIDDLEWARE = [
