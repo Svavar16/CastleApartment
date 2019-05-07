@@ -4,7 +4,7 @@ from Apartments.models import Apartments
 
 class ApartmentsCreateForm(ModelForm):
     image = forms.CharField(required=True)
-    
+
     class Meta:
         model = Apartments
         exclude = ['id']
