@@ -1,5 +1,5 @@
 from django.db import models
-from User.models import Person
+from User.models import Profile
 
 # Create your models here.
 
@@ -20,7 +20,7 @@ class Apartments(models.Model):
     animalsAllowed = models.BooleanField()
     garage = models.BooleanField()
     yearBuild = models.IntegerField()
-    sellerID = models.ForeignKey(Person)
+    sellerID = models.ForeignKey(Profile)
 
 
 class ApartmentImage(models.Model):

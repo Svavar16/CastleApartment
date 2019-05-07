@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from Apartments.models import Location, Apartments
 
@@ -5,41 +6,35 @@ from Apartments.models import Location, Apartments
 # Create your models here.
 
 
-class Person(models.Model):
-    firstName = models.CharField(max_length=255)
-    lastName = models.CharField(max_length=255)
-    password = models.CharField(max_length=30)
-    email = models.CharField(max_length=255)
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     locationID = models.ForeignKey(Location, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.firstName, self.lastName
 
 
 class CardDetails(models.Model):
     cardNumber = models.IntegerField(max_length=16)
     dateOfExpire = models.DateField()
-    Owner = models.ForeignKey(Person)
+    Owner = models.ForeignKey(Profile)
 
     def __str__(self):
         return self.cardNumber
 
 
 class RealtorAgents(models.Model):
-    PersonID = models.ForeignKey(Person)
+    ProfileID = models.ForeignKey(Profile)
     apartmentInChargeOf = models.ForeignKey(Apartments, on_delete=models.CASCADE)
     dateOfCreation = models.DateField()
 
     def __str__(self):
-        return Person.firstName, Person.lastName
+        return Profile.user.first_name, Profile.user.last_name
 
 
 class Customers(models.Model):
-    PersonID = models.ForeignKey(Person)
+    ProfileID = models.ForeignKey(Profile)
     dateOFCreation = models.DateField()
 
     def __str__(self):
-        return Person.firstName, Person.lastName
+        return Profile.firstName, Profile.lastName
 
 
 class Transaction(models.Model):
