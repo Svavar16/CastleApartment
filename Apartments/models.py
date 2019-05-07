@@ -1,5 +1,5 @@
 from django.db import models
-from User.models import Profile
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -20,9 +20,9 @@ class Apartments(models.Model):
     animalsAllowed = models.BooleanField()
     garage = models.BooleanField()
     yearBuild = models.IntegerField()
-    sellerID = models.ForeignKey(Profile)
+    sellerID = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class ApartmentImage(models.Model):
     candyImage = models.CharField(max_length=999)
-    apartmentID = models.ForeignKey(Apartments)
+    apartmentID = models.ForeignKey(Apartments, on_delete=models.CASCADE)

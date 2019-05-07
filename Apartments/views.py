@@ -7,6 +7,12 @@ def index(request):
     return render(request, 'apartments/index.html')
 
 
+def apartment_details(request, id):
+    render(request, 'apartments/apartment_details.html', {
+        'apartment': get_object_or_404(Apartments, pk=id)
+    })
+
+
 def create_apartment(request):
     if request.method == 'POST':
         form = ApartmentsCreateForm(data=request.POST)
@@ -20,6 +26,7 @@ def create_apartment(request):
     return render(request, 'apartments/create_apartment.html', {
         'form': form
     })
+
 
 def delete_apartment(request, id):
     apartment = get_object_or_404(Apartments, pk=id)

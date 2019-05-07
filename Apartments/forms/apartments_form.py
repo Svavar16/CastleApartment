@@ -1,4 +1,5 @@
-from django.forms import ModelForm, widgets, forms
+from django.forms import ModelForm, widgets
+from django import forms
 from Apartments.models import Apartments
 
 
