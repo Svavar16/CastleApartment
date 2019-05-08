@@ -45,9 +45,31 @@
 .search-ap {
     display: inline-block !important;
     float: left;
+    margin: auto;
 
 }
-.search-ap-drop {
+.sell-house-btn {
+    background-color: gold;
+    padding: 50px 100px 50px 100px;
+    margin: auto;
+}
+.sell-house {
+    margin: auto;
 
 }
+.new-list {
+    margin: auto;
+    float: right;
+}
+.new-list-img {
+    width: 400px;
+    height: 400px;
+}
+.bott-div {
+    margin: auto;
+
+}
+
+
+
 
