@@ -1,8 +1,8 @@
  <div class="col-lg-4">
     <div class="card" style="width: 18rem;">
-      <img src="{{ ApartmentImage.apartment }}" class="card-img-top" alt="...">
+      <img src="{{ apartments.apartmentimage_set.first.candyImage }}" class="card-img-top" alt="Apartment Image">
       <div class="card-body">
-        <h5 class="card-title">{{ apartment.Location.streetName }} {{ apartment.Location.houseNumber }}</h5>
+        <h5 class="card-title">{{ apartment.locationID.streetName }} {{ apartment.locationID.houseNumber }}</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
       </div>
       <ul class="list-group list-group-flush">
