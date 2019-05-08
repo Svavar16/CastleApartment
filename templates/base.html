@@ -14,25 +14,27 @@
 </head>
 <body id="body-color">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Castle Apartment</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <a class="navbar-brand" href="{% url 'apartment-index' %}">Castle Apartment</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="#">Features</a>
-          <a class="nav-item nav-link" href="#">Pricing</a>
-          <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          {% if user.is_authenticated %}
-              <p>hello {{ user.first_name }}</p>
-              <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
-          {% else %}
-              <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
-              <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
-          {% endif %}
+          <div class="navbar-nav ">
+              <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-item nav-link" href="#">Features</a>
+              <a class="nav-item nav-link" href="#">Pricing</a>
+              <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </div>
-      </div>
+          {% if user.is_authenticated %}
+            <p>hello {{ user.first_name }}</p>
+            <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+          {% else %}
+            <div class = "ml-auto mr-1 navbar-nav test-right ml-auto mr-1">
+                <a class="nav-item nav-link " href="{% url 'login' %}">Login</a>
+                <a class="nav-item nav-link " href="{% url 'register' %}">Register</a>
+            </div>
+          {% endif %}
+       </div>
     </nav>
     <div class="container">
         {% block content %}
