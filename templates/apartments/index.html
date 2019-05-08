@@ -41,7 +41,7 @@
                         </div>
                         <!--end of col-->
                     <div class="col">
-                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search topics or keywords">
+                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search...">
                     </div>
                     <!--end of col-->
                     <div class="col-auto">
@@ -82,7 +82,21 @@
          </div>
     </div>
 
-
+    <div class="bott-div row">
+        <div class="sell-house col-lg-6">
+            <a href="{% url 'create_apartment' %}">
+                <button class="sell-house-btn">
+                    Sell a house
+                </button>
+            </a>
+        </div>
+        <div class="new-list col-lg-6">
+            <h3>New Listings</h3>
+            <div >
+                <img class="new-list-img" src="https://image.shutterstock.com/z/stock-photo-luxury-home-exterior-at-night-beautiful-new-house-with-green-grass-and-landscaping-at-twilight-has-1174898596.jpg" />
+            </div>
+        </div>
+    </div>
 
 
 {% endblock %}
