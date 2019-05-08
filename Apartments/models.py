@@ -10,6 +10,9 @@ class Location(models.Model):
     city = models.CharField(max_length=255)
     postalCode = models.IntegerField(max_length=10)
 
+    def __str__(self):
+        return self.streetName, self.houseNumber
+
 
 class Apartments(models.Model):
     price = models.FloatField(max_length=20)

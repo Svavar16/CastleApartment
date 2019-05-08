@@ -16,15 +16,22 @@ def apartment_details(request, id):
 def create_apartment(request):
     if request.method == 'POST':
         apartment_form = ApartmentsCreateForm(data=request.POST)
-        if apartment_form.is_valid():
-            apartment = apartment_form.save()
+        location_form = LocationCreateForm(data=request.POST)
+        if all([apartment_form.is_valid(), location_form.is_valid()]):
+            location = location_form.save()
+            apartment = apartment_form.save(commit=False)
+            apartment.locationID = location
+            location.save()
+            apartment.save()
             apartment_image = ApartmentImage(candyImage=request.POST['image'], apartmentID=apartment)
             apartment_image.save()
             return redirect('apartment-index')
     else:
         apartment_form = ApartmentsCreateForm()
+        location_form = LocationCreateForm()
     return render(request, 'apartments/create_apartment.html', {
         'apartment_form': apartment_form,
+        'location_form': location_form,
     })
 
 

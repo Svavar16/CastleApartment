@@ -5,10 +5,11 @@ from Apartments.models import Apartments, Location
 
 class ApartmentsCreateForm(ModelForm):
     image = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    locationApartment = forms.NumberInput()
 
     class Meta:
         model = Apartments
-        exclude = ['id']
+        exclude = ['id', 'locationID']
         widgets = {
             'price': widgets.NumberInput(attrs={'class': 'form-control'}),
             'size': widgets.NumberInput(attrs={'class': 'form-control'}),
@@ -22,6 +23,7 @@ class ApartmentsCreateForm(ModelForm):
 
 
 class LocationCreateForm(ModelForm):
+
     class Meta:
         model = Location
         exclude = ['id']
