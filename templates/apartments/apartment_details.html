@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>{{ apartment.locationID }}</h2>
-    <p>{{ apartment.prize }}</p>
-    <p>{{ apartment.size }}</p>
+    {% for apartment in apartments %}
+        {{ apartment.price }}
+    {% endfor %}
 {% endblock %}
