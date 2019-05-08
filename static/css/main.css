@@ -26,3 +26,28 @@
     50%{background-position:51% 100%}
     100%{background-position:50% 0%}
 }
+.room-for-navbar {
+    margin-top: 20px;
+}
+.apartment-search {
+    margin: 10px;
+    width: 100%;
+}
+.form-control-borderless {
+    border: none;
+}
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+.search-ap {
+    display: inline-block !important;
+    float: left;
+
+}
+.search-ap-drop {
+
+}
+
