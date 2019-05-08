@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>All listing that we have</h2>
+    <div class="row">
+        {% for apartment in apartments %}
+            {% include 'apartments/apartment_details.html' with apartment=apartment %}
+        {% endfor %}
+    </div>
+{% endblock %}

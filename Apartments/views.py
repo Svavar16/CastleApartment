@@ -8,6 +8,11 @@ def index(request):
     return render(request, 'apartments/index.html', context)
 
 
+def all_listing(request):
+    context = {'apartments': Apartments.objects.all()}
+    return render(request, 'apartments/all_listing.html', context)
+
+
 def get_apartment_by_id(request, id):
     render(request, 'apartments/apartment_details.html', {
         'apartments': get_object_or_404(Apartments, pk=id)

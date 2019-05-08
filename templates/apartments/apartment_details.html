@@ -1,6 +1,18 @@
-{% extends 'base.html' %}
-{% block content %}
-    {% for apartment in apartments %}
-        {{ apartment.price }}
-    {% endfor %}
-{% endblock %}
+ <div class="col-lg-4">
+    <div class="card" style="width: 18rem;">
+      <img src="{{ ApartmentImage.apartment }}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{ apartment.Location.streetName }} {{ apartment.Location.houseNumber }}</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Price: {{ apartment.price }}</li>
+        <li class="list-group-item">Size: {{ apartment.size }}</li>
+        <li class="list-group-item">Year Build: {{ apartment.yearBuild }}</li>
+      </ul>
+      <div class="card-body">
+        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a>
+      </div>
+    </div>
+ </div>

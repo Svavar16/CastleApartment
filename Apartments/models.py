@@ -29,3 +29,6 @@ class Apartments(models.Model):
 class ApartmentImage(models.Model):
     candyImage = models.CharField(max_length=999)
     apartmentID = models.ForeignKey(Apartments, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.candyImage
