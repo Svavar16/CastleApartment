@@ -1,9 +1,25 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from Apartments.forms.apartments_form import ApartmentsCreateForm, LocationCreateForm
 from Apartments.models import ApartmentImage, Apartments
+from django.http import JsonResponse
 
 
 def index(request):
+    if 'apartment-card-details' in request.GET:
+        apartments = [{
+            'id': x.id,
+            'price': x.price,
+            'size': x.size,
+            'locationID': x.locationID,
+            'rooms': x.rooms,
+            'privateEntrance': x.privateEntrance,
+            'animalsAllowed': x.animalsAllowed,
+            'garage': x.garage,
+            'yearBuild': x.yearBuild,
+            'sellerID': x.sellerID,
+            'firstImage': x.apartmentimage_set.first().candyImage,
+        } for x in Apartments.objects.all().order_by('-price')]
+        return JsonResponse({'data': apartments})
     context = {'apartments': Apartments.objects.all()}
     return render(request, 'apartments/index.html', context)
 
@@ -18,20 +34,15 @@ def all_listing_by_price(request):
     return render(request, 'apartments/all_listing.html', context)
 
 
+def all_listing_by_name(request):
+    context = {'apartments': Apartments.objects.all().order_by('-price')}
+    return render(request, 'apartments/all_listing.html', context)
+
+
 def get_apartment_by_id(request, id):
     return render(request, 'apartments/single_apartment.html', {
         'apartments': get_object_or_404(Apartments, pk=id)
     })
-
-
-def get_apartment_by_price(request):
-    context = {'apartments': Apartments.objects.all().order_by('name')}
-    return render(request, 'apartments/all_listing.html', context)
-
-
-def get_apartment_by_price(request):
-    context = {'apartments': Apartments.objects.all().order_by('price')}
-    return render(request, 'apartments/all_listing.html', context)
 
 
 def create_apartment(request):
@@ -44,7 +55,7 @@ def create_apartment(request):
             apartment.locationID = location
             location.save()
             apartment.save()
-            apartment_image = ApartmentImage(candyImage=request.POST['image'], apartmentID=apartment)
+            apartment_image = ApartmentImage(image=request.POST['image'], apartmentID=apartment)
             apartment_image.save()
             return redirect('apartment-index')
     else:
