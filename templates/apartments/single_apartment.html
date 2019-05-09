@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="single-ap">
+        <img src="{{ apartments.apartmentimage_set.first.image }}" class="single-ap-img" alt="Apartment Image">
+        <h1>{{ apartments.locationID.streetName }} {{ apartments.locationID.houseNumber }}</h1>
+        <p>Price: {{ apartments.price }}</p>
+        <p>Size: {{ apartments.size }}</p>
+        <p>Built: {{ apartments.yearBuild }}</p>
+        <p>Description: {{ apartments.description }}</p>
 
-    <h1>{{ apartments.locationID.streetName }}</h1>
-    <h3> Housenumber: {{ apartments.locationID.houseNumber }}</h3>
-
+    </div>
 {% endblock %}

@@ -76,5 +76,13 @@
     color: white;
     font-family: "Comic Sans MS" !important;
 }
+.single-ap-img {
+    width: 400px;
+    height: 400px;
+}
+.single-ap {
+    background-color: white;
+    display: inline-block;
+}
 
 
