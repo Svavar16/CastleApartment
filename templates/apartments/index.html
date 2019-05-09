@@ -83,6 +83,7 @@
     </div>
 
     <div class="bott-div row">
+        {% if user.is_authenticated %}
         <div class="sell-house col-lg-6">
             <a href="{% url 'create_apartment' %}">
                 <button class="sell-house-btn">
@@ -90,6 +91,16 @@
                 </button>
             </a>
         </div>
+        {% else %}
+            <div class="sell-house col-lg-6">
+            <a href="{% url 'login' %}">
+                <button class="sell-house-btn">
+                    Sell a house
+                </button>
+            </a>
+        </div>
+        {% endif %}
+
         <div class="new-list col-lg-6">
             <h3>New Listings</h3>
             <div >
