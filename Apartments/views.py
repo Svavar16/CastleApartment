@@ -25,7 +25,7 @@ def all_listing_by_price(request):
 
 
 def all_listing_by_name(request):
-    context = {'apartments': Apartments.objects.all().order_by('price')}
+    context = {'apartments': Apartments.objects.all().order_by('locationID__streetName')}
     return render(request, 'apartments/all_listing.html', context)
 
 
