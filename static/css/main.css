@@ -84,5 +84,14 @@
     background-color: white;
     display: inline-block;
 }
+.single-ap-desc {
+
+    width: 600px;
+    word-wrap: break-word;
+}
+.single-ap-info {
+    float: right;
+}
+
 
 
