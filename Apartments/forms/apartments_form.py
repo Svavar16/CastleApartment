@@ -19,6 +19,7 @@ class ApartmentsCreateForm(ModelForm):
             'garage': widgets.CheckboxInput(attrs={'class': 'form-check-input'}),
             'yearBuild': widgets.NumberInput(attrs={'class': 'form-control'}),
             'sellerID': widgets.Select(attrs={'class': 'form-control'}),
+            'description': widgets.Textarea(attrs={'class': 'form-control'})
         }
 
 
