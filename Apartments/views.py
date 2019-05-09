@@ -68,9 +68,10 @@ def change_price(request, id):
         if price_form.is_valid():
             apartment = get_object_or_404(Apartments, pk=id)
             apartment.price = request.POST['price']
-            #kannski þarf að gera apartment.save()
+            apartment.save()
         return redirect('apartment-index')
-    return render(request, 'apartments/change_price.html', {
+    context = {
         'form': ChangePriceForm,
         'id': id
-    })
+    }
+    return render(request, 'apartments/change_price.html', context)
