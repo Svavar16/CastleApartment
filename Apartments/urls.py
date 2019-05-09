@@ -12,3 +12,5 @@ urlpatterns = [
     path('delete_apartment/<int:id>', views.delete_apartment, name='delete_apartment'),
     path('<int:id>/change_price', views.change_price, name='change_price'),
 ]
+
+
