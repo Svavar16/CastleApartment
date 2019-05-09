@@ -34,4 +34,4 @@ class ApartmentImage(models.Model):
     apartmentID = models.ForeignKey(Apartments, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.candyImage
+        return self.image
