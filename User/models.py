@@ -5,12 +5,16 @@ from django.db import models
 
 
 class CardDetails(models.Model):
-    cardNumber = models.IntegerField()
+    firstName = models.CharField(max_length=50)
+    lastName = models.CharField(max_length=50)
+    cardNumber = models.CharField(max_length=16)
     dateOfExpire = models.DateField()
-    Owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    CVV = models.CharField(max_length=3)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.cardNumber
+
 
 
 

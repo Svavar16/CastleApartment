@@ -1,6 +1,7 @@
-from django.contrib.auth.forms import UserCreationForm
+from django import forms
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from User.forms.create_card import CreateCardForm
 from User.forms.create_user import CreateUserForm
 
 
@@ -19,3 +20,21 @@ def register(request):
     return render(request, 'user/register.html', {
         'form': CreateUserForm()
     })
+
+def addCard(request):
+    if request.method == 'POST':
+        form = CreateCardForm(data=request.POST)
+        if form.is_valid():
+            card = form.save(commit=False)
+            user = request.user
+            card.owner = user
+            if card.cardNumber.isdigit() and card.CVV.isdigit() and int(card.cardNumber) > 0 and int(card.CVV) > 0:
+                card.save()
+                return redirect(('apartment-index'))
+            else:
+                raise forms.ValidationError("Invalid input")
+    return render(request, 'user/credit_card.html', {
+        'form': CreateCardForm()
+    })
+
+

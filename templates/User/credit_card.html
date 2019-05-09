@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form class="form form-horizontal" action="{% url 'credit_card' %}" method="post">
+        {% csrf_token %}
+        <h3>Credit Card</h3>
+        {{ form }}
+        <br>
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </form>
+{% endblock %}
