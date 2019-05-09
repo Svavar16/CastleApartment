@@ -8,4 +8,5 @@ urlpatterns = [
     path('<int:id>', views.get_apartment_by_id, name='apartment_details'),
     path('create_apartment', views.create_apartment, name='create_apartment'),
     path('delete_apartment/<int:id>', views.delete_apartment, name='delete_apartment'),
+    path('<int:id>/change_price', views.change_price, name='change_price'),
 ]

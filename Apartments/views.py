@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from Apartments.forms.apartments_form import ApartmentsCreateForm, LocationCreateForm
 from Apartments.models import ApartmentImage, Apartments
 from django.http import JsonResponse
+from Apartments.forms.change_price_form import ChangePriceForm
 
 
 def index(request):
@@ -17,7 +18,7 @@ def index(request):
             'garage': x.garage,
             'yearBuild': x.yearBuild,
             'sellerID': x.sellerID,
-            'firstImage': x.apartmentimage_set.first().candyImage,
+            'firstImage': x.apartmentimage_set.first().image,
         } for x in Apartments.objects.all()]
         return JsonResponse({'data': apartments})
     context = {'apartments': Apartments.objects.all()}
@@ -71,3 +72,16 @@ def delete_apartment(request, id):
     apartment = get_object_or_404(Apartments, pk=id)
     apartment.delete()
     return redirect('apartment-index')
+
+def change_price(request, id):
+    if request.method == 'POST':
+        price_form = ChangePriceForm(data=request.POST)
+        if price_form.is_valid():
+            apartment = get_object_or_404(Apartments, pk=id)
+            apartment.price = request.POST['price']
+            #kannski þarf að gera apartment.save()
+        return redirect('apartment-index')
+    return render(request, 'apartments/change_price.html', {
+        'form': ChangePriceForm,
+        'id': id
+    })
