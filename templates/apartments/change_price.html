@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form class="form form-horizontal" action="{% url 'change_price' %}" method="put">
+        {% csrf_token %}
+        <h3>Change Price</h3>
+        {{ form }}
+        <br>
+        <input type="submit" value="Change" class="btn btn-primary" />
+    </form>
+{% endblock %}
