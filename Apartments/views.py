@@ -7,18 +7,18 @@ from Apartments.forms.change_price_form import ChangePriceForm
 
 def index(request):
     if 'arrange_by_price' in request.GET:
-        apartments = [ {
+        apartments = [{
             'id': x.id,
             'price': x.price,
             'size': x.size,
-            #'locationID': x.locationID,
+            'locationID': x.locationID.id,
             'rooms': x.rooms,
             'privateEntrance': x.privateEntrance,
             'animalsAllowed': x.animalsAllowed,
             'garage': x.garage,
             'yearBuild': x.yearBuild,
             'description': x.description,
-            #'sellerID': x.sellerID,
+            'sellerID': x.sellerID.id,
             #'firstImage': x.apartmentimage_set.first().image,
         } for x in Apartments.objects.all()]
         return JsonResponse({'data': apartments})
