@@ -13,10 +13,25 @@ def all_listing(request):
     return render(request, 'apartments/all_listing.html', context)
 
 
+def all_listing_by_price(request):
+    context = {'apartments': Apartments.objects.all().order_by('-price')}
+    return render(request, 'apartments/all_listing.html', context)
+
+
 def get_apartment_by_id(request, id):
     return render(request, 'apartments/single_apartment.html', {
         'apartments': get_object_or_404(Apartments, pk=id)
     })
+
+
+def get_apartment_by_price(request):
+    context = {'apartments': Apartments.objects.all().order_by('name')}
+    return render(request, 'apartments/all_listing.html', context)
+
+
+def get_apartment_by_price(request):
+    context = {'apartments': Apartments.objects.all().order_by('price')}
+    return render(request, 'apartments/all_listing.html', context)
 
 
 def create_apartment(request):

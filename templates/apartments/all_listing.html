@@ -2,6 +2,9 @@
 
 {% block content %}
     <h2>All listing that we have</h2>
+    <div class="input-group-btn">
+        <a href="{% url 'apartment_all_listing_by_price' %}" class="btn btn-primary">Arrange by price</a>
+    </div>
     <div class="row">
         {% for apartment in apartments %}
             {% include 'apartments/apartment_details.html' with apartment=apartment %}
