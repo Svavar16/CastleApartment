@@ -11,7 +11,7 @@ class Location(models.Model):
     postalCode = models.IntegerField()
 
     def __str__(self):
-        return self.streetName, self.houseNumber
+        return self.streetName, self.houseNumber, self.city, self.postalCode
 
 
 class Apartments(models.Model):
