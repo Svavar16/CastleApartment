@@ -3,7 +3,7 @@
 {% block content %}
     <h2>All listing that we have</h2>
     <div class="input-group-btn">
-        <a href="{% url 'apartment_all_listing_by_price' %}" class="btn btn-primary" id="arrange_by_price_btn">Arrange by price</a>
+        <button class="btn btn-primary" id="arrange_by_price_btn">Arrange by price</button>
     </div>
     <div class="row">
         {% for apartment in apartments %}
