@@ -4,10 +4,16 @@
     <div class="single-ap jumbotron">
         <img src="{{ apartments.apartmentimage_set.first.image }}" class="single-ap-img" alt="Apartment Image">
         <h1>{{ apartments.locationID.streetName }} {{ apartments.locationID.houseNumber }}</h1>
+        <h3>{{ apartments.locationID.city }} {{ apartments.locationID.postalCode }}</h3>
         <div class="single-ap-info">
             <p>Price: {{ apartments.price }}</p>
             <p>Size: {{ apartments.size }}</p>
             <p>Built: {{ apartments.yearBuild }}</p>
+            <p>Rooms: {{ apartments.rooms }}</p>
+            <p>Private Entrance: {% if apartments.privateEntrance %} Yes {% else %} No {% endif %}</p>
+            <p>Animals: {% if apartments.animalsAllowed %} Yes {% else %} No {% endif %}</p>
+            <p>Garage: {% if apartments.garage%} Yes {% else %} No {% endif %}</p>
+
             <p class="single-ap-desc card-text">Description: {{ apartments.description }}</p>
         </div>
     </div>
