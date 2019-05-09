@@ -18,7 +18,7 @@ def index(request):
             'yearBuild': x.yearBuild,
             'sellerID': x.sellerID,
             'firstImage': x.apartmentimage_set.first().candyImage,
-        } for x in Apartments.objects.all().order_by('-price')]
+        } for x in Apartments.objects.all()]
         return JsonResponse({'data': apartments})
     context = {'apartments': Apartments.objects.all()}
     return render(request, 'apartments/index.html', context)
