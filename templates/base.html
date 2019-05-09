@@ -20,14 +20,16 @@
         </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ">
-              <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-item nav-link active" href="{% url 'apartment_all_listing' %}">All Listings <span class="sr-only">(current)</span></a>
               <a class="nav-item nav-link" href="#">Features</a>
               <a class="nav-item nav-link" href="#">Pricing</a>
               <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </div>
           {% if user.is_authenticated %}
-            <p>hello {{ user.first_name }}</p>
-            <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+            <div class = "ml-auto mr-1 navbar-nav test-right ml-auto mr-1">
+                <h5 class="hello-user-h5">hello {{ user.first_name }}</h5>
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+            </div>
           {% else %}
             <div class = "ml-auto mr-1 navbar-nav test-right ml-auto mr-1">
                 <a class="nav-item nav-link " href="{% url 'login' %}">Login</a>

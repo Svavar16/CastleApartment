@@ -14,7 +14,7 @@ def all_listing(request):
 
 
 def get_apartment_by_id(request, id):
-    return render(request, 'apartments/apartment_details.html', {
+    return render(request, 'apartments/single_apartment.html', {
         'apartments': get_object_or_404(Apartments, pk=id)
     })
 
