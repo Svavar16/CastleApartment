@@ -11,6 +11,7 @@ def index(request):
 
 
 def all_listing(request):
+    # get the Json if they are searcing by price
     if 'arrange_by_price' in request.GET:
         apartments = [{
             'id': x.id,
@@ -25,7 +26,25 @@ def all_listing(request):
             'description': x.description,
             'sellerID': x.sellerID.id,
             'firstImage': x.apartmentimage_set.first().image,
-        } for x in Apartments.objects.all()]
+        } for x in Apartments.objects.all().order_by('-price')]
+        return JsonResponse({'data': apartments})
+    #get the Json if they are searching for a name
+    if 'search_filter' in request.GET:
+        search_filter = request.GET['search_filter']
+        apartments = [{
+            'id': x.id,
+            'price': x.price,
+            'size': x.size,
+            'locationID': x.locationID.id,
+            'rooms': x.rooms,
+            'privateEntrance': x.privateEntrance,
+            'animalsAllowed': x.animalsAllowed,
+            'garage': x.garage,
+            'yearBuild': x.yearBuild,
+            'description': x.description,
+            'sellerID': x.sellerID.id,
+            'firstImage': x.apartmentimage_set.first().image,
+        } for x in Apartments.objects.filter(locationID__streetName__icontains=search_filter)]
         return JsonResponse({'data': apartments})
     context = {'apartments': Apartments.objects.all()}
     return render(request, 'apartments/all_listing.html', context)
