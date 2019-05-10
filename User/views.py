@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from User.forms.create_card import CreateCardForm
 from User.forms.create_user import CreateUserForm
 
@@ -21,6 +21,7 @@ def register(request):
         'form': CreateUserForm()
     })
 
+
 def addCard(request):
     if request.method == 'POST':
         form = CreateCardForm(data=request.POST)
@@ -35,6 +36,12 @@ def addCard(request):
                 raise forms.ValidationError("Invalid input")
     return render(request, 'user/credit_card.html', {
         'form': CreateCardForm()
+    })
+
+
+def getUserProfile(request, id):
+    return render(request, 'User/user_profile.html', {
+        'user': get_object_or_404(User, pk=id)
     })
 
 

@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from Apartments.forms.apartments_form import ApartmentsCreateForm, LocationCreateForm
 from Apartments.models import ApartmentImage, Apartments
@@ -46,7 +47,7 @@ def get_apartment_by_id(request, id):
         'apartments': get_object_or_404(Apartments, pk=id)
     })
 
-
+@login_required
 def create_apartment(request):
     if request.method == 'POST':
         apartment_form = ApartmentsCreateForm(data=request.POST)
@@ -68,12 +69,13 @@ def create_apartment(request):
         'location_form': location_form,
     })
 
-
+@login_required
 def delete_apartment(request, id):
     apartment = get_object_or_404(Apartments, pk=id)
     apartment.delete()
     return redirect('apartment-index')
 
+@login_required
 def change_price(request, id):
     if request.method == 'POST':
         price_form = ChangePriceForm(data=request.POST)
