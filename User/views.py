@@ -41,7 +41,7 @@ def addCard(request):
 
 def getUserProfile(request, id):
     return render(request, 'User/user_profile.html', {
-        'user': get_object_or_404(User, pk=id)
+        'profile_user': get_object_or_404(User, pk=id)
     })
 
 
