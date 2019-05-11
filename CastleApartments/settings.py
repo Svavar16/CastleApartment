@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'User.apps.UserConfig',
     'Apartments.apps.ApartmentsConfig',
+    'Transactions.apps.TransactionsConfig',
 ]
 
 MIDDLEWARE = [

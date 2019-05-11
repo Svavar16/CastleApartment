@@ -6,7 +6,6 @@ from Transactions.models import Transactions
 
 # Create your views here.
 
-#muna bæta i apps og path
 def make_transaction(request, apartment_id):
     buyer = request.user
     apartment = get_object_or_404(Apartments, pk=apartment_id)
@@ -14,3 +13,6 @@ def make_transaction(request, apartment_id):
     credit_card = get_object_or_404(CardDetails, owner=buyer)
     transaction = Transactions(buyer, seller, credit_card, apartment)
     transaction.save()
+    apartment.sellerID = buyer
+    apartment.save()
+#muna breyta apartment owner og save-a
