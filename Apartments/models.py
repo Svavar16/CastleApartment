@@ -38,6 +38,7 @@ class Apartments(models.Model):
     yearBuild = models.IntegerField()
     description = models.CharField(max_length=999)
     sellerID = models.ForeignKey(User, on_delete=models.CASCADE)
+    forSale = models.BooleanField()
     class Meta:
         permissions = (('can change_price', 'Can change price'),)
 

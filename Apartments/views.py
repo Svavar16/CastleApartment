@@ -130,6 +130,7 @@ def create_apartment(request):
             location = location_form.save()
             apartment = apartment_form.save(commit=False)
             apartment.locationID = location
+            apartment.forSale = True
             location.save()
             apartment.save()
             apartment_image = ApartmentImage(image=request.POST['image'], apartmentID=apartment)
