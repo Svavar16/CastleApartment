@@ -19,7 +19,11 @@ def all_listing(request):
             'id': x.id,
             'price': x.price,
             'size': x.size,
-            'locationID': x.locationID,
+            'locationID': x.locationID.id,
+            'locationID_streetName': x.locationID.streetName,
+            'locationID_houseNumber': x.locationID.houseNumber,
+            'locationID_city': x.locationID.city,
+            'locationID_postalCode': x.locationID.postalCode,
             'rooms': x.rooms,
             'privateEntrance': x.privateEntrance,
             'animalsAllowed': x.animalsAllowed,
@@ -39,6 +43,10 @@ def all_listing(request):
             'price': x.price,
             'size': x.size,
             'locationID': x.locationID.id,
+            'locationID_streetName': x.locationID.streetName,
+            'locationID_houseNumber': x.locationID.houseNumber,
+            'locationID_city': x.locationID.city,
+            'locationID_postalCode': x.locationID.postalCode,
             'rooms': x.rooms,
             'privateEntrance': x.privateEntrance,
             'animalsAllowed': x.animalsAllowed,
@@ -51,12 +59,16 @@ def all_listing(request):
         return JsonResponse({'data': apartments})
 
     # get the Json, if they search by name asc
-    if 'sort-name-asc' in request.GET:
+    if 'sort_name_asc' in request.GET:
         apartments = [{
             'id': x.id,
             'price': x.price,
             'size': x.size,
             'locationID': x.locationID.id,
+            'locationID_streetName': x.locationID.streetName,
+            'locationID_houseNumber': x.locationID.houseNumber,
+            'locationID_city': x.locationID.city,
+            'locationID_postalCode': x.locationID.postalCode,
             'rooms': x.rooms,
             'privateEntrance': x.privateEntrance,
             'animalsAllowed': x.animalsAllowed,
@@ -65,7 +77,30 @@ def all_listing(request):
             'description': x.description,
             'sellerID': x.sellerID.id,
             'firstImage': x.apartmentimage_set.first().image,
-        } for x in Apartments.objects.all()]
+        } for x in Apartments.objects.all().order_by('-locationID__streetName')]
+        return JsonResponse({'data': apartments})
+
+    #get the Json, to filter by postalCode
+    if 'search_postal' in request.GET:
+        search_postal = request.GET
+        apartments = [{
+            'id': x.id,
+            'price': x.price,
+            'size': x.size,
+            'locationID': x.locationID.id,
+            'locationID_streetName': x.locationID.streetName,
+            'locationID_houseNumber': x.locationID.houseNumber,
+            'locationID_city': x.locationID.city,
+            'locationID_postalCode': x.locationID.postalCode,
+            'rooms': x.rooms,
+            'privateEntrance': x.privateEntrance,
+            'animalsAllowed': x.animalsAllowed,
+            'garage': x.garage,
+            'yearBuild': x.yearBuild,
+            'description': x.description,
+            'sellerID': x.sellerID.id,
+            'firstImage': x.apartmentimage_set.first().image,
+        } for x in Apartments.objects.filter(locationID__postalCode__exact=search_postal)]
         return JsonResponse({'data': apartments})
     context = {'apartments': Apartments.objects.all()}
     return render(request, 'apartments/all_listing.html', context)

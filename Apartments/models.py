@@ -4,14 +4,27 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
+class LocationManager(models.Manager):
+    def get_by_natural_key(self, streetName, houseNumber, city, postalCode):
+        return self.get(streetName=streetName, houseNumber=houseNumber, city=city, postalCode=postalCode)
+
+
 class Location(models.Model):
+    objects = LocationManager()
+
     streetName = models.CharField(max_length=255)
     houseNumber = models.IntegerField()
     city = models.CharField(max_length=255)
     postalCode = models.IntegerField()
 
+    def natural_key(self):
+        return self.id, self.streetName, self.houseNumber, self.city, self.postalCode
+
     def __str__(self):
         return self.streetName, self.houseNumber, self.city, self.postalCode
+
+    class Meta:
+        unique_together = (('streetName', 'houseNumber', 'city', 'postalCode'),)
 
 
 class Apartments(models.Model):

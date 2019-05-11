@@ -1,6 +1,6 @@
 $(document).ready(function () {
    // Arrange apartments by price, should return the most expensive first
-   $('#Test-Btn').on('click', function (e) {
+   $('#sort-by-price-Btn').on('click', function (e) {
       e.preventDefault();
       console.log("Arrange by price works!");
       $.ajax({
@@ -13,8 +13,8 @@ $(document).ready(function () {
                    return `<div class="card" style="width: 18rem;">
                                 <img src="${d.firstImage}" class="card-img-top" alt="Apartment Image">
                                 <div class="card-body">
-                                    <h5 class="card-title">${d.locationID.streetName} ${d.locationID.houseNumber} </h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <h5 class="card-title">${d.locationID_streetName} ${d.locationID_houseNumber}</h5>
+                                    <p class="card-text">${d.description}</p>
                                 </div>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">Price: ${d.price}</li>
@@ -35,7 +35,7 @@ $(document).ready(function () {
        })
    });
    // Search for an apartment from address
-   $('#Test-search-Btn').on('click', function (e) {
+   $('#search-text-Btn').on('click', function (e) {
       e.preventDefault();
       console.log("Search Works!");
       var searchText = $('#search-box').val();
@@ -47,8 +47,8 @@ $(document).ready(function () {
                 return `<div class="card" style="width: 18rem;">
                              <img src="${d.firstImage}" class="card-img-top" alt="Apartment Image">
                              <div class="card-body">
-                                 <h5 class="card-title">${d.locationID.streetName} ${d.locationID.houseNumber} </h5>
-                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                 <h5 class="card-title">${d.locationID_streetName} ${d.locationID_houseNumber}</h5>
+                                 <p class="card-text">${d.description}</p>
                              </div>
                              <ul class="list-group list-group-flush">
                                  <li class="list-group-item">Price: ${d.price}</li>
@@ -79,8 +79,8 @@ $(document).ready(function () {
                 return `<div class="card" style="width: 18rem;">
                              <img src="${d.firstImage}" class="card-img-top" alt="Apartment Image">
                              <div class="card-body">
-                                 <h5 class="card-title">${d.locationID.streetName} ${d.locationID.houseNumber} </h5>
-                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                 <h5 class="card-title">${d.locationID_streetName} ${d.locationID_houseNumber}</h5>
+                                 <p class="card-text">${d.description}</p>
                              </div>
                              <ul class="list-group list-group-flush">
                                  <li class="list-group-item">Price: ${d.price}</li>
@@ -99,4 +99,36 @@ $(document).ready(function () {
            }
        })
    });
+   $('#search-Btn-postal').on('click', function (e) {
+       e.preventDefault();
+       console.log("Postal search works!");
+       var postal_text = $('#')
+       $.ajax({
+           url: 'all_listing?search_postal',
+           type: 'GET',
+           success: function (resp) {
+               var newHTML = resp.data.map(d => {
+                return `<div class="card" style="width: 18rem;">
+                             <img src="${d.firstImage}" class="card-img-top" alt="Apartment Image">
+                             <div class="card-body">
+                                 <h5 class="card-title">${d.locationID_streetName} ${d.locationID_houseNumber}</h5>
+                                 <p class="card-text">${d.description}</p>
+                             </div>
+                             <ul class="list-group list-group-flush">
+                                 <li class="list-group-item">Price: ${d.price}</li>
+                                 <li class="list-group-item">Size: ${d.size}</li>
+                                 <li class="list-group-item">Year Build: ${d.yearBuild}</li>
+                             </ul>
+                             <div class="card-body">
+                                 <a href="${d.id}" class="card-link">More Details</a>
+                             </div>
+                         </div>`
+               });
+               $('#apartment-card-details').html(newHTML.join(''))
+           },
+           error: function (xhr, status, error) {
+               console.error(error)
+           }
+       })
+   })
 });

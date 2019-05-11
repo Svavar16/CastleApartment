@@ -5,14 +5,18 @@
     <div class="input-group-btn">
         <div class="search-func">
             <input type="search" class="form-control" id="search-box" placeholder="Enter a street name..." />
-            <button class="btn btn-primary" id="Test-search-Btn">Search</button>
+            <button class="btn btn-primary" id="search-text-Btn">Search</button>
         </div>
-        <button class="btn btn-primary" id="Test-Btn">Arrange by price</button>
+        <div class="search-func">
+            <input type="search" class="form-control" id="search-box-postal" placeholder="Enter a postal code..." />
+            <button class="btn btn-primary" id="search-Btn-postal">Search</button>
+        </div>
+        <button class="btn btn-primary" id="sort-by-price-Btn">Arrange by price</button>
         <button class="btn btn-primary" id="sort-name-asc">Arrange by name ascending</button>
         <!--<a href="{% url 'apartment_all_listing_by_price' %}" class="btn btn-primary" id="arrange_by_price_btn">Arrange by price</a>
         <a href="{% url 'apartment_all_listing_by_name' %}" class="btn btn-primary" id="arrange_by_name_btn">Arrange by name</a>-->
     </div>
-    <div class="row"  >
+    <div class="row">
         {% for apartment in apartments %}
             <div class="col-lg-4" id="apartment-card-details">
                 <div class="card">
