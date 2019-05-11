@@ -8,12 +8,13 @@
             <button class="btn btn-primary" id="Test-search-Btn">Search</button>
         </div>
         <button class="btn btn-primary" id="Test-Btn">Arrange by price</button>
+        <button class="btn btn-primary" id="sort-name-asc">Arrange by name ascending</button>
         <!--<a href="{% url 'apartment_all_listing_by_price' %}" class="btn btn-primary" id="arrange_by_price_btn">Arrange by price</a>
         <a href="{% url 'apartment_all_listing_by_name' %}" class="btn btn-primary" id="arrange_by_name_btn">Arrange by name</a>-->
     </div>
-    <div class="row"  id="apartment-card-details">
+    <div class="row"  >
         {% for apartment in apartments %}
-            <div class="col-lg-4">
+            <div class="col-lg-4" id="apartment-card-details">
                 <div class="card">
                     <img src="{{ apartment.apartmentimage_set.first.image }}" class="card-img-top" alt="Apartment Image">
                     <div class="card-body">
