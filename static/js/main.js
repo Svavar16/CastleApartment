@@ -102,9 +102,10 @@ $(document).ready(function () {
    $('#search-Btn-postal').on('click', function (e) {
        e.preventDefault();
        console.log("Postal search works!");
-       var postal_text = $('#')
+       var postal_text = $('#search-box-postal').val();
+       console.log(postal_text);
        $.ajax({
-           url: 'all_listing?search_postal',
+           url: 'all_listing?search_postal=' + postal_text,
            type: 'GET',
            success: function (resp) {
                var newHTML = resp.data.map(d => {
@@ -125,6 +126,7 @@ $(document).ready(function () {
                          </div>`
                });
                $('#apartment-card-details').html(newHTML.join(''))
+
            },
            error: function (xhr, status, error) {
                console.error(error)

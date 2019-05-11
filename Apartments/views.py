@@ -82,7 +82,7 @@ def all_listing(request):
 
     #get the Json, to filter by postalCode
     if 'search_postal' in request.GET:
-        search_postal = request.GET
+        search_postal = request.GET['search_postal']
         apartments = [{
             'id': x.id,
             'price': x.price,
