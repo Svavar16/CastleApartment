@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Receipt</h2>
+    <h3>{{ apartment.locationID.streetName }} {{ apartment.locationID.houseNumber }}</h3>
+    <h3>{{ apartment.locationID.city }} {{ apartment.locationID.postalCode }}</h3>
+    <p>Price: {{ apartment.price }}</p>
+    <p>Size: {{ apartment.size }}</p>
+    <p>Built: {{ apartment.yearBuild }}</p>
+    <p>Rooms: {{ apartment.rooms }}</p>
+    <p>Private Entrance: {% if apartment.privateEntrance %} Yes {% else %} No {% endif %}</p>
+    <p>Animals: {% if apartment.animalsAllowed %} Yes {% else %} No {% endif %}</p>
+    <p>Garage: {% if apartment.garage%} Yes {% else %} No {% endif %}</p>
+    <p class="single-ap-desc card-text">Description: {{ apartment.description }}</p>
+    <br>
+    <p>Name: {{ buyer.first_name }} {{ buyer.last_name }}</p>
+    <p>Credit Card: XXXX-XXXX-XXXX-{{ credit_card }}</p>
+    <p>Email: {{ buyer.email }}</p>
+    <p>Rooms: {{ apartment.rooms }}</p>
+{% endblock %}
