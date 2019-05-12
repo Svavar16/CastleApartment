@@ -57,6 +57,7 @@ def all_listing(request):
             'firstImage': x.apartmentimage_set.first().image,
         } for x in Apartments.objects.filter(locationID__streetName__icontains=search_filter)]
         return JsonResponse({'data': apartments})
+    
 
     # get the Json, if they search by name asc
     if 'sort_name_asc' in request.GET:

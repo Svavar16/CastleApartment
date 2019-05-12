@@ -26,7 +26,7 @@ $(document).ready(function () {
                                 </div>
                             </div>`
                });
-               $('#apartment-card-details').html(newHTML.join(''))
+               $('#apartment-card-details').html(newHTML.join(''));
            },
            error: function (xhr, status, error) {
                // todo, a way to display the error, maybe a toastr
@@ -59,8 +59,9 @@ $(document).ready(function () {
                                  <a href="${d.id}" class="card-link">More Details</a>
                              </div>
                          </div>`
-               });
-               $('#apartment-card-details').html(newHTML.join(''))
+                });
+                $('#apartment-card-details').html(newHTML.join(''));
+                $('#search-box').val('');
          },
          error: function (xhr, status, error) {
             // todo, a way to display the error
@@ -68,6 +69,7 @@ $(document).ready(function () {
          }
       })
    });
+   // sort by name ascending
    $('#sort-name-asc').on('click', function (e) {
        e.preventDefault();
        console.log("Sort by asc works!");
@@ -92,13 +94,14 @@ $(document).ready(function () {
                              </div>
                          </div>`
                });
-               $('#apartment-card-details').html(newHTML.join(''))
+               $('#apartment-card-details').html(newHTML.join(''));
            },
            error: function (xhr, status, error) {
                console.error(error)
            }
        })
    });
+   //search by postal code
    $('#search-Btn-postal').on('click', function (e) {
        e.preventDefault();
        console.log("Postal search works!");
@@ -124,9 +127,9 @@ $(document).ready(function () {
                                  <a href="${d.id}" class="card-link">More Details</a>
                              </div>
                          </div>`
-               });
-               $('#apartment-card-details').html(newHTML.join(''))
-
+                });
+                $('#apartment-card-details').html(newHTML.join(''));
+                $('#search-box-postal').val('');
            },
            error: function (xhr, status, error) {
                console.error(error)
