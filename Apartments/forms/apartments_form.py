@@ -9,7 +9,7 @@ class ApartmentsCreateForm(ModelForm):
 
     class Meta:
         model = Apartments
-        exclude = ['id', 'locationID', 'forSale']
+        exclude = ['id', 'locationID', 'forSale', 'sellerID']
         widgets = {
             'price': widgets.NumberInput(attrs={'class': 'form-control'}),
             'size': widgets.NumberInput(attrs={'class': 'form-control'}),
@@ -18,7 +18,6 @@ class ApartmentsCreateForm(ModelForm):
             'animalsAllowed': widgets.CheckboxInput(attrs={'class': 'form-check-input'}),
             'garage': widgets.CheckboxInput(attrs={'class': 'form-check-input'}),
             'yearBuild': widgets.NumberInput(attrs={'class': 'form-control'}),
-            'sellerID': widgets.Select(attrs={'class': 'form-control'}),
             'description': widgets.Textarea(attrs={'class': 'form-control'})
         }
 
