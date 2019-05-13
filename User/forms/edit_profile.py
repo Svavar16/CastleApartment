@@ -3,4 +3,12 @@ from django.forms import ModelForm, widgets
 from django import forms
 
 class EditProfileForm(forms.ModelForm):
-    pass
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')
+        exclude = ['id', 'username', 'password']
+        widgets = {
+            'first_name': widgets.TextInput(attrs={'class': 'form-control'}),
+            'last_name': widgets.TextInput(attrs={'class': 'form-control'}),
+            'email': widgets.EmailInput(attrs={'class': 'form-control'}),
+        }

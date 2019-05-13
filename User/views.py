@@ -29,7 +29,7 @@ def register(request):
 
 
 @login_required
-def edit_profile(request):
+def editProfile(request):
     if request.method == 'POST':
         pass
     return render(request, 'user/edit_profile.html', {
