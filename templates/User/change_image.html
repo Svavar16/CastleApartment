@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3>Select a saved credit card</h3>
+    <form class="form form-horizontal" action="{% url 'change_image' %}" method="post">
+        {% csrf_token %}
+        <h3>Change Picture</h3>
+        {{ form }}
+        <br>
+        <input type="submit" value="EditImg" class="btn btn-primary" />
+    </form>
+{% endblock %}
