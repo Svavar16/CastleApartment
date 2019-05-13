@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from User.forms.create_card import CreateCardForm
 from User.forms.create_user import CreateUserForm
 from User.forms.select_card import SelectCardForm
+from User.models import ProfileImage
 
 
 def register(request):
@@ -17,6 +18,9 @@ def register(request):
             user.first_name = form.first_name
             user.last_name = form.last_name
             user.save()
+            if request.POST['image']:
+                userImage = ProfileImage(img=request.POST['image'], user=user)
+                userImage.save()
             return redirect('login')
     return render(request, 'user/register.html', {
         'form': CreateUserForm()
