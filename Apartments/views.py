@@ -11,6 +11,33 @@ from Apartments.forms.change_price_form import ChangePriceForm
 
 
 def index(request):
+    if 'search_filter' in request.GET:
+        search_filter = request.GET['search_filter']
+        apartments = [{
+            'id': x.id,
+            'price': x.price,
+            'size': x.size,
+            'locationID': x.locationID.id,
+            'locationID_streetName': x.locationID.streetName,
+            'locationID_houseNumber': x.locationID.houseNumber,
+            'locationID_city': x.locationID.city,
+            'locationID_postalCode': x.locationID.postalCode,
+            'rooms': x.rooms,
+            'privateEntrance': x.privateEntrance,
+            'animalsAllowed': x.animalsAllowed,
+            'garage': x.garage,
+            'yearBuild': x.yearBuild,
+            'description': x.description,
+            'sellerID': x.sellerID.id,
+            'firstImage': x.apartmentimage_set.first().image,
+        } for x in Apartments.objects.filter(locationID__streetName__icontains=search_filter)]
+        if 'search_filter' in request.GET and request.user.is_authenticated:
+            print("this works search with user")
+            search_filter = request.GET['search_filter']
+            userID = request.user
+            searchedObject = SearchHistory.objects.create(userID=userID, searchItem=search_filter)
+            searchedObject.save()
+        return JsonResponse({'data': apartments})
     context = {'apartments': Apartments.objects.all()}
     return render(request, 'apartments/index.html', context)
 

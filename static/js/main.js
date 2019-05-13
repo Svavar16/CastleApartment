@@ -9,7 +9,7 @@ $(document).ready(function () {
          type: 'GET',
          success: function (resp) {
             var newHTML = resp.data.map(d => {
-                return `<div class="col-lg-4" >
+                return `<div class="col-lg-4">
                             <div class="card">
                                 <img src="${d.firstImage}" class="card-img-top" alt="Apartment Image">
                                 <div class="card-body">
@@ -226,13 +226,13 @@ $(document).ready(function () {
       e.preventDefault();
       console.log("Search index Works!");
       var searchText = $('#main-search-text').val();
-      window.open("/apartments/all_listing");
       $.ajax({
-         url: 'all_listing?search_filter=' + searchText,
+         url: '?search_filter=' + searchText,
          type: 'GET',
          success: function (resp) {
-            var newHTML = resp.data.map(d => {
-                return `<div class="col-lg-4" >
+             var newHTML = resp.data.map(d => {
+                 return `<h3 class="new-list-h3 house-listing">If you want a more specific search, then try our seach engine in the all listing section</h3>
+                            <div class="col-lg-4 house-listing">
                             <div class="card">
                                 <img src="${d.firstImage}" class="card-img-top" alt="Apartment Image">
                                 <div class="card-body">
@@ -249,9 +249,9 @@ $(document).ready(function () {
                                 </div>
                             </div>
                            </div>`
-                });
-                $('#apartment-card-details').html(newHTML.join(''));
-                $('#search-box').val('');
+             });
+             $('#Index-bottom-row-search-function').html(newHTML.join(''));
+             $('#main-search-text').val('')
          },
          error: function (xhr, status, error) {
             // todo, a way to display the error

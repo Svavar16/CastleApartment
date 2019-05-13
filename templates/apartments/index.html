@@ -41,7 +41,7 @@
                         </div>
                         <!--end of col-->
                     <div class="col">
-                        <input class="form-control form-control-lg form-control-borderless" id="main-search-text" type="search" placeholder="Search...">
+                        <input class="form-control form-control-lg form-control-borderless" id="main-search-text" type="search" placeholder="Search by street name...">
                     </div>
                     <!--end of col-->
                     <div class="col-auto">
@@ -81,9 +81,10 @@
                         <!--end of col-->
          </div>
     </div>
-
+    
     <div class="bott-div row">
 
+    <div class="bott-div row" id="Index-bottom-row-search-function">
         <div class="sell-house col-lg-6">
             {% if user.is_authenticated %}
                 <a href="{% url 'create_apartment' %}">
