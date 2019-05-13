@@ -1,10 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
-    <form class="form form-horizontal" action="{% url 'credit_card' %}" method="post">
+    <form class="form form-horizontal" action="{% url 'credit_card' apartment_id=apartment_id %}" method="post">
         {% csrf_token %}
         <h3>Credit Card</h3>
-        {{ form }}
+        {{ createForm }}
         <br>
         <input type="submit" value="Create" class="btn btn-primary" />
+    </form>
+    <h3>Select a saved credit card</h3>
+    <form class="form form-horizontal" action="{% url 'review_select' apartment_id=apartment_id %}" method="post">
+        {% csrf_token %}
+        <h3>Credit Card</h3>
+        {{ selectForm }}
+        <br>
+        <input type="submit" value="Select" class="btn btn-primary" />
     </form>
 {% endblock %}

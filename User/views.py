@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from User.forms.create_card import CreateCardForm
 from User.forms.create_user import CreateUserForm
+from User.forms.select_card import SelectCardForm
 
 
 def register(request):
@@ -22,7 +23,7 @@ def register(request):
     })
 
 
-def addCard(request):
+def addCard(request, apartment_id):
     if request.method == 'POST':
         form = CreateCardForm(data=request.POST)
         if form.is_valid():
@@ -31,11 +32,13 @@ def addCard(request):
             card.owner = user
             if card.cardNumber.isdigit() and card.CVV.isdigit() and int(card.cardNumber) > 0 and int(card.CVV) > 0:
                 card.save()
-                return redirect(('apartment-index'))
+                return redirect('review', apartment_id=apartment_id, payment_id=card.id)
             else:
                 raise forms.ValidationError("Invalid input")
     return render(request, 'user/credit_card.html', {
-        'form': CreateCardForm()
+        'createForm': CreateCardForm(),
+        'selectForm': SelectCardForm(user=request.user),
+        'apartment_id': apartment_id
     })
 
 

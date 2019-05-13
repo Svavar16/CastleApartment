@@ -15,6 +15,8 @@
             <p>Garage: {% if apartments.garage%} Yes {% else %} No {% endif %}</p>
 
             <p class="single-ap-desc card-text">Description: {{ apartments.description }}</p>
+            <br>
+            <a href="{% url 'credit_card' apartment_id=apartments.id %}">BUY</a>
         </div>
     </div>
 {% endblock %}
