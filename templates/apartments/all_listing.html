@@ -16,9 +16,9 @@
         <!--<a href="{% url 'apartment_all_listing_by_price' %}" class="btn btn-primary" id="arrange_by_price_btn">Arrange by price</a>
         <a href="{% url 'apartment_all_listing_by_name' %}" class="btn btn-primary" id="arrange_by_name_btn">Arrange by name</a>-->
     </div>
-    <div class="row">
+    <div class="row" id="apartment-card-details">
         {% for apartment in apartments %}
-            <div class="col-lg-4" id="apartment-card-details">
+            <div class="col-lg-4" >
                 <div class="card">
                     <img src="{{ apartment.apartmentimage_set.first.image }}" class="card-img-top" alt="Apartment Image">
                     <div class="card-body">

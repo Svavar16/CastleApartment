@@ -34,6 +34,7 @@ $(document).ready(function () {
            }
        })
    });
+
    // Search for an apartment from address
    $('#search-text-Btn').on('click', function (e) {
       e.preventDefault();
@@ -69,6 +70,7 @@ $(document).ready(function () {
          }
       })
    });
+
    // sort by name ascending
    $('#sort-name-asc').on('click', function (e) {
        e.preventDefault();
@@ -101,6 +103,7 @@ $(document).ready(function () {
            }
        })
    });
+
    //search by postal code
    $('#search-Btn-postal').on('click', function (e) {
        e.preventDefault();
