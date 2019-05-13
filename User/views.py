@@ -30,10 +30,14 @@ def register(request):
 
 @login_required
 def editProfile(request):
+    user = request.user
     if request.method == 'POST':
-        pass
+        form = EditProfileForm(instance=user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('user_profile', id=user.id)
     return render(request, 'user/edit_profile.html', {
-        'form': EditProfileForm(instance=request.user)
+        'form': EditProfileForm(instance=user)
     })
 
 
