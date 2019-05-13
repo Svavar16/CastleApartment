@@ -13,7 +13,7 @@
             <p>Private Entrance: {% if apartments.privateEntrance %} Yes {% else %} No {% endif %}</p>
             <p>Animals: {% if apartments.animalsAllowed %} Yes {% else %} No {% endif %}</p>
             <p>Garage: {% if apartments.garage%} Yes {% else %} No {% endif %}</p>
-
+            <p>Seller: <a href="{% url 'user_profile' id=apartments.sellerID.id %}">{{ apartments.sellerID.first_name }} {{ sellerID.first_name }}</a></p>
             <p class="single-ap-desc card-text">Description: {{ apartments.description }}</p>
             <br>
             <a href="{% url 'credit_card' apartment_id=apartments.id %}">BUY</a>
