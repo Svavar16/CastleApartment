@@ -6,7 +6,7 @@ from User.forms.create_card import CreateCardForm
 from User.forms.create_user import CreateUserForm
 from User.forms.select_card import SelectCardForm
 from User.models import ProfileImage
-from User.forms.edit_profile import EditProfileForm
+from User.forms.edit_profile import EditProfileForm, EditImageForm
 
 def register(request):
     if request.method == 'POST':
@@ -40,6 +40,19 @@ def editProfile(request):
         'form': EditProfileForm(instance=user)
     })
 
+
+@login_required()
+def editImage(request):
+    user = request.user
+    image = get_object_or_404(ProfileImage, user=user)
+    if request.method == 'POST':
+        form = EditImageForm(instance=image, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('user_profile', id=user.id)
+    return render(request, 'user/change_image.html', {
+        'form': EditImageForm(instance=image)
+    })
 
 def addCard(request, apartment_id):
     if request.method == 'POST':
