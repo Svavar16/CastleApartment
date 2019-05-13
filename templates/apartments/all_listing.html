@@ -2,24 +2,53 @@
 
 {% block content %}
     <h2>All listing that we have</h2>
-    <div class="input-group-btn">
-        <div class="search-func">
-            <input type="search" class="form-control" id="search-box" placeholder="Enter a street name..." />
-            <button class="btn btn-primary" id="search-text-Btn">Search</button>
+    <div class="apartment-search">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <form class="card card-sm">
+                    <div class="card-body row no-gutters align-items-center">
+                        <div class="col-auto">
+                            <i class="fas fa-search h4 text-body"></i>
+                        </div>
+                        <!--end of col-->
+                    <div class="col">
+                        <input class="form-control form-control-lg form-control-borderless" type="search" id="search-box" placeholder="Enter a street name...">
+                    </div>
+                    <!--end of col-->
+                    <div class="col-auto">
+                        <button class="btn btn-lg btn-success" type="submit" id="search-text-Btn">Search</button>
+                    </div>
+                    <!--end of col-->
+                    </div>
+                    <div class="card-body row no-gutters align-items-center">
+                        <div class="col-auto">
+                            <i class="fas fa-search h4 text-body"></i>
+                    </div>
+                    <div class="col">
+                        <input class="form-control form-control-lg form-control-borderless" type="search" id="search-box-postal" placeholder="Enter a postal code...">
+                    </div>
+                    <!--end of col-->
+                    <div class="col-auto">
+                        <button class="btn btn-lg btn-success" type="submit" id="search-Btn-postal">Search</button>
+                    </div>
+                    </div>
+                    <div class="form-group search-ap col-lg-12 col-auto">
+                        <button class="btn btn-lg btn-success" id="sort-by-price-asc">Arrange by price ascending</button>
+                        <button class="btn btn-lg btn-success" id="sort-by-price-desc">Arrange by price descending</button>
+                    </div>
+                    <div class="form-group search-ap col-lg-12 col-auto">
+                        <button class="btn btn-lg btn-success" id="sort-name-desc">Arrange by name ascending</button>
+                        <button class="btn btn-lg btn-success" id="sort-name-asc">Arrange by name descending</button>
+                    </div>
+                </form>
+            </div>
+                        <!--end of col-->
         </div>
-        <div class="search-func">
-            <input type="search" class="form-control" id="search-box-postal" placeholder="Enter a postal code..." />
-            <button class="btn btn-primary" id="search-Btn-postal">Search</button>
-        </div>
-        <button class="btn btn-primary" id="sort-by-price-Btn">Arrange by price</button>
-        <button class="btn btn-primary" id="sort-name-asc">Arrange by name ascending</button>
-        <!--<a href="{% url 'apartment_all_listing_by_price' %}" class="btn btn-primary" id="arrange_by_price_btn">Arrange by price</a>
-        <a href="{% url 'apartment_all_listing_by_name' %}" class="btn btn-primary" id="arrange_by_name_btn">Arrange by name</a>-->
     </div>
     <div class="row" id="apartment-card-details">
         {% for apartment in apartments %}
-            <div class="col-lg-4" >
-                <div class="card">
+            <div class="col-lg-4 house-listing">
+                <div class="card card-width">
                     <img src="{{ apartment.apartmentimage_set.first.image }}" class="card-img-top" alt="Apartment Image">
                     <div class="card-body">
                         <h5 class="card-title">{{ apartment.locationID.streetName }} {{ apartment.locationID.houseNumber }}</h5>

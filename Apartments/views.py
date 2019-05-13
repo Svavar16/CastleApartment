@@ -64,8 +64,6 @@ def all_listing(request):
             searchedObject.save()
         return JsonResponse({'data': apartments})
 
-
-
     # get the Json, if they search by name asc
     if 'sort_name_asc' in request.GET:
         apartments = [{
@@ -86,6 +84,28 @@ def all_listing(request):
             'sellerID': x.sellerID.id,
             'firstImage': x.apartmentimage_set.first().image,
         } for x in Apartments.objects.all().order_by('-locationID__streetName')]
+        return JsonResponse({'data': apartments})
+
+    # get the Json, if they search by name asc
+    if 'sort_name_desc' in request.GET:
+        apartments = [{
+            'id': x.id,
+            'price': x.price,
+            'size': x.size,
+            'locationID': x.locationID.id,
+            'locationID_streetName': x.locationID.streetName,
+            'locationID_houseNumber': x.locationID.houseNumber,
+            'locationID_city': x.locationID.city,
+            'locationID_postalCode': x.locationID.postalCode,
+            'rooms': x.rooms,
+            'privateEntrance': x.privateEntrance,
+            'animalsAllowed': x.animalsAllowed,
+            'garage': x.garage,
+            'yearBuild': x.yearBuild,
+            'description': x.description,
+            'sellerID': x.sellerID.id,
+            'firstImage': x.apartmentimage_set.first().image,
+        } for x in Apartments.objects.all().order_by('locationID__streetName')]
         return JsonResponse({'data': apartments})
 
     #get the Json, to filter by postalCode
@@ -110,6 +130,7 @@ def all_listing(request):
             'firstImage': x.apartmentimage_set.first().image,
         } for x in Apartments.objects.filter(locationID__postalCode__exact=search_postal)]
         return JsonResponse({'data': apartments})
+
     context = {'apartments': Apartments.objects.all()}
     return render(request, 'apartments/all_listing.html', context)
 
