@@ -11,5 +11,6 @@ class CreateCardForm(ModelForm):
             'lastName': widgets.TextInput(attrs={'class': 'form-control'}),
             'cardNumber': widgets.TextInput(attrs={'class': 'form-control'}),
             'dateOfExpire': widgets.DateInput(attrs={'class': 'form-control'}),
-            'CVV': widgets.TextInput(attrs={'class': 'form-control'})
+            'CVV': widgets.TextInput(attrs={'class': 'form-control'}),
+            'save': widgets.CheckboxInput(attrs={'class': 'form-control'}),
         }
