@@ -39,6 +39,7 @@ class Apartments(models.Model):
     description = models.CharField(max_length=999)
     sellerID = models.ForeignKey(User, on_delete=models.CASCADE)
     forSale = models.BooleanField()
+
     class Meta:
         permissions = (('can change_price', 'Can change price'),)
 
@@ -49,3 +50,24 @@ class ApartmentImage(models.Model):
 
     def __str__(self):
         return self.image
+
+
+class SearchHistoryManager(models.Manager):
+
+    def create_search_history(self, searchItem):
+        searchItem = self.create(searchItem=searchItem)
+        return searchItem
+
+    def create_search_history_id(self, userID):
+        userID = self.create(userID=userID)
+        return userID
+
+
+
+class SearchHistory(models.Model):
+    searchItem = models.CharField(max_length=50)
+    userID = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    objects = SearchHistoryManager()
+
+
