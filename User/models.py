@@ -17,5 +17,9 @@ class CardDetails(models.Model):
         return self.cardNumber
 
 
+class ProfileImage(models.Model):
+    img = models.CharField(max_length=999)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
 
 

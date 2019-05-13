@@ -18,6 +18,7 @@ class CreateUserForm(UserCreationForm):
         }
 """
 class CreateUserForm(ModelForm):
+    image = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     class Meta:
         model = User
         fields = ('username', 'password', 'first_name', 'last_name', 'email')

@@ -1,10 +1,12 @@
+
 import json
 import random
+from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from Apartments.forms.apartments_form import ApartmentsCreateForm, LocationCreateForm
-from Apartments.models import ApartmentImage, Apartments, Location
-from django.http import JsonResponse
+from Apartments.models import ApartmentImage, Apartments, SearchHistory
+from django.http import JsonResponse, HttpResponse
 from Apartments.forms.change_price_form import ChangePriceForm
 
 
@@ -57,8 +59,15 @@ def all_listing(request):
             'sellerID': x.sellerID.id,
             'firstImage': x.apartmentimage_set.first().image,
         } for x in Apartments.objects.filter(locationID__streetName__icontains=search_filter)]
+        if 'search_filter' in request.GET and request.user.is_authenticated:
+            print("this works search with user")
+            search_filter = request.GET['search_filter']
+            userID = request.user
+            searchedObject = SearchHistory.objects.create(userID=userID, searchItem=search_filter)
+            searchedObject.save()
         return JsonResponse({'data': apartments})
-    
+
+
 
     # get the Json, if they search by name asc
     if 'sort_name_asc' in request.GET:
