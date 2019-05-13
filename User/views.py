@@ -1,11 +1,12 @@
 from django import forms
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from User.forms.create_card import CreateCardForm
 from User.forms.create_user import CreateUserForm
 from User.forms.select_card import SelectCardForm
 from User.models import ProfileImage
-
+from User.forms.edit_profile import EditProfileForm
 
 def register(request):
     if request.method == 'POST':
@@ -24,6 +25,19 @@ def register(request):
             return redirect('login')
     return render(request, 'user/register.html', {
         'form': CreateUserForm()
+    })
+
+
+@login_required
+def editProfile(request):
+    user = request.user
+    if request.method == 'POST':
+        form = EditProfileForm(instance=user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('user_profile', id=user.id)
+    return render(request, 'user/edit_profile.html', {
+        'form': EditProfileForm(instance=user)
     })
 
 
