@@ -93,5 +93,10 @@
     float: right;
 }
 
+.card-width {
+    width: 22rem;
+}
 
-
+.house-listing {
+    padding: 2rem;
+}
