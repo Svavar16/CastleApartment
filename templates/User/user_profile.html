@@ -8,5 +8,7 @@
     <h3>Date Joined: {{ profile_user.date_joined }}</h3>
     <h3>Last Login: {{ profile_user.last_login }}</h3>
 
+    <a href={% url 'edit_profile' %}></a>
+
 {% endblock %}
 
