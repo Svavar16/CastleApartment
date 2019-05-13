@@ -15,7 +15,6 @@ class EditProfileForm(forms.ModelForm):
         }
 
 class EditImageForm(forms.ModelForm):
-    image = forms.CharField()
     class Meta:
         model = ProfileImage
         fields = ('img',)
