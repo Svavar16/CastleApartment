@@ -2,7 +2,6 @@ $(document).ready(function () {
     // Search for an apartment from address
    $('#search-text-Btn').on('click', function (e) {
       e.preventDefault();
-      console.log("Search Works!");
       var searchText = $('#search-box').val();
       $.ajax({
          url: 'all_listing?search_filter=' + searchText,
@@ -40,7 +39,6 @@ $(document).ready(function () {
    // Arrange apartments by price, should return the most expensive first
    $('#sort-by-price-asc').on('click', function (e) {
       e.preventDefault();
-      console.log("Arrange by price asc works!");
       $.ajax({
            url: 'all_listing?arrange_by_price',
            type: 'GET',
@@ -78,7 +76,6 @@ $(document).ready(function () {
    // Arrange apartments by price, should return the least expensive first
    $('#sort-by-price-desc').on('click', function (e) {
       e.preventDefault();
-      console.log("Arrange by price desc works!");
       $.ajax({
            url: 'all_listing?arrange_by_price',
            type: 'GET',
@@ -116,7 +113,6 @@ $(document).ready(function () {
    // sort by name ascending
    $('#sort-name-asc').on('click', function (e) {
        e.preventDefault();
-       console.log("Sort by asc works!");
        $.ajax({
        url: 'all_listing?sort_name_asc',
        type: 'GET',
@@ -151,7 +147,6 @@ $(document).ready(function () {
    // sort by name descending
    $('#sort-name-desc').on('click', function (e) {
        e.preventDefault();
-       console.log("Sort by desc works!");
        $.ajax({
        url: 'all_listing?sort_name_desc',
        type: 'GET',
@@ -186,7 +181,6 @@ $(document).ready(function () {
    //search by postal code
    $('#search-Btn-postal').on('click', function (e) {
        e.preventDefault();
-       console.log("Postal search works!");
        var postal_text = $('#search-box-postal').val();
        console.log(postal_text);
        $.ajax({
@@ -224,7 +218,6 @@ $(document).ready(function () {
     //search function from the index
     $('#main-search-btn').on('click', function (e) {
       e.preventDefault();
-      console.log("Search index Works!");
       var searchText = $('#main-search-text').val();
       $.ajax({
          url: '?search_filter=' + searchText,
@@ -259,4 +252,22 @@ $(document).ready(function () {
          }
       })
    });
+
+    //checks with the user if he want do back from a form or not, notifies him that he will lose his/her data
+    var formhaschanged = false;
+    var submitted = false;
+    $(document).on('change', 'form.form-horizontal', function () {
+        formhaschanged = true;
+    });
+    window.onbeforeunload = function (e) {
+        if(formhaschanged && !submitted){
+            var message = "You have unsaved information, they might be lost", e = e || window.event;
+            if(e){
+                e.returnValue = message;
+            }
+        }
+    };
+    $('form').submit(function () {
+        submitted = true;
+    });
 });

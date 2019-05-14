@@ -99,3 +99,19 @@
 .house-listing {
     padding: 2rem;
 }
+
+.profile-image {
+    text-align: left;
+    width: 400px;
+    height: 400px;
+
+}
+.profile-text {
+    text-align: right;
+    width: 600px;
+}
+.profile-image-navbar {
+    width: 48px;
+    height: 48px;
+}
+
