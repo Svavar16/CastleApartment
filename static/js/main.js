@@ -1,4 +1,23 @@
 $(document).ready(function () {
+    function reuseHTML(data) {
+        return `<div class="col-lg-4 house-listing">
+                                <div class="card">
+                                    <img src="${data.firstImage}" class="card-img-top card-img-size card-img-size" alt="Apartment Image">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${data.locationID_streetName} ${data.locationID_houseNumber}</h5>
+                                        <p class="card-text">${data.description}</p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Price: ${data.price} Kr</li>
+                                        <li class="list-group-item">Size: ${data.size} m<sup>2</sup></li>
+                                        <li class="list-group-item">Year Build: ${data.yearBuild}</li>
+                                    </ul>
+                                    <div class="card-body">
+                                        <a href="${data.id}" class="card-link">More Details</a>
+                                    </div>
+                                </div>
+                               </div>`
+    }
 
     // Search for an apartment from address
     $('#search-text-Btn').on('click', function (e) {
@@ -14,23 +33,7 @@ $(document).ready(function () {
                 }
                 else {
                     var newHTML = resp.data.map(d => {
-                        return `<div class="col-lg-4 house-listing">
-                                <div class="card">
-                                    <img src="${d.firstImage}" class="card-img-top card-img-size card-img-size" alt="Apartment Image">
-                                    <div class="card-body">
-                                        <h5 class="card-title">${d.locationID_streetName} ${d.locationID_houseNumber}</h5>
-                                        <p class="card-text">${d.description}</p>
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Price: ${d.price} Kr</li>
-                                        <li class="list-group-item">Size: ${d.size} m<sup>2</sup></li>
-                                        <li class="list-group-item">Year Build: ${d.yearBuild}</li>
-                                    </ul>
-                                    <div class="card-body">
-                                        <a href="${d.id}" class="card-link">More Details</a>
-                                    </div>
-                                </div>
-                               </div>`
+                        return reuseHTML(d)
                     });
                     $('#apartment-card-details').html(newHTML.join(''));
                     $('#search-box').val('');
@@ -46,29 +49,11 @@ $(document).ready(function () {
     $('#sort-by-price-asc').on('click', function (e) {
         e.preventDefault();
         $.ajax({
-            url: 'all_listing?arrange_by_price',
+            url: 'all_listing?arrange_by_price_asc',
             type: 'GET',
             success: function (resp) {
-                //var Array = resp.data.map();
-                //var sortedArray  =  Array.sort(function(a, b){return a - b});
                 var newHTML = resp.data.map(d => {
-                    return `<div class="col-lg-4 house-listing" >
-                            <div class="card">
-                                <img src="${d.firstImage}" class="card-img-top card-img-size" alt="Apartment Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">${d.locationID_streetName} ${d.locationID_houseNumber}</h5>
-                                    <p class="card-text">${d.description}</p>
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Price: ${d.price} Kr</li>
-                                    <li class="list-group-item">Size: ${d.size} m<sup>2</sup></li>
-                                    <li class="list-group-item">Year Build: ${d.yearBuild}</li>
-                                </ul>
-                                <div class="card-body">
-                                    <a href="${d.id}" class="card-link">More Details</a>
-                                </div>
-                            </div>
-                           </div>`
+                    return reuseHTML(d)
                 });
                 $('#apartment-card-details').html(newHTML.join(''));
             },
@@ -89,23 +74,7 @@ $(document).ready(function () {
                 //var Array = resp.data.map();
                 //var sortedArray  =  Array.sort(function(a, b){return a - b});
                 var newHTML = resp.data.map(d => {
-                    return `<div class="col-lg-4 house-listing" >
-                            <div class="card">
-                                <img src="${d.firstImage}" class="card-img-top card-img-size" alt="Apartment Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">${d.locationID_streetName} ${d.locationID_houseNumber}</h5>
-                                    <p class="card-text">${d.description}</p>
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Price: ${d.price} Kr</li>
-                                    <li class="list-group-item">Size: ${d.size} m<sup>2</sup></li>
-                                    <li class="list-group-item">Year Build: ${d.yearBuild}</li>
-                                </ul>
-                                <div class="card-body">
-                                    <a href="${d.id}" class="card-link">More Details</a>
-                                </div>
-                            </div>
-                           </div>`
+                    return reuseHTML(d)
                 });
                 $('#apartment-card-details').html(newHTML.join(''));
             },
@@ -124,23 +93,7 @@ $(document).ready(function () {
             type: 'GET',
             success: function (resp) {
                 var newHTML = resp.data.map(d => {
-                    return `<div class="col-lg-4 house-listing" >
-                            <div class="card">
-                                <img src="${d.firstImage}" class="card-img-top card-img-size" alt="Apartment Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">${d.locationID_streetName} ${d.locationID_houseNumber}</h5>
-                                    <p class="card-text">${d.description}</p>
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Price: ${d.price} Kr</li>
-                                    <li class="list-group-item">Size: ${d.size} m<sup>2</sup></li>
-                                    <li class="list-group-item">Year Build: ${d.yearBuild}</li>
-                                </ul>
-                                <div class="card-body">
-                                    <a href="${d.id}" class="card-link">More Details</a>
-                                </div>
-                            </div>
-                           </div>`
+                    return reuseHTML(d)
                 });
                 $('#apartment-card-details').html(newHTML.join(''));
             },
@@ -158,23 +111,7 @@ $(document).ready(function () {
             type: 'GET',
             success: function (resp) {
                 var newHTML = resp.data.map(d => {
-                    return `<div class="col-lg-4 house-listing" >
-                            <div class="card">
-                                <img src="${d.firstImage}" class="card-img-top card-img-size" alt="Apartment Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">${d.locationID_streetName} ${d.locationID_houseNumber}</h5>
-                                    <p class="card-text">${d.description}</p>
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Price: ${d.price} Kr</li>
-                                    <li class="list-group-item">Size: ${d.size} m<sup>2</sup></li>
-                                    <li class="list-group-item">Year Build: ${d.yearBuild}</li>
-                                </ul>
-                                <div class="card-body">
-                                    <a href="${d.id}" class="card-link">More Details</a>
-                                </div>
-                            </div>
-                           </div>`
+                    return reuseHTML(d)
                 });
                 $('#apartment-card-details').html(newHTML.join(''));
             },
@@ -199,23 +136,7 @@ $(document).ready(function () {
                 }
                 else {
                     var newHTML = resp.data.map(d => {
-                        return `<div class="col-lg-4 house-listing">
-                                    <div class="card">
-                                        <img src="${d.firstImage}" class="card-img-top card-img-size" alt="Apartment Image">
-                                        <div class="card-body">
-                                            <h5 class="card-title">${d.locationID_streetName} ${d.locationID_houseNumber}</h5>
-                                            <p class="card-text">${d.description}</p>
-                                        </div>
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">Price: ${d.price} Kr</li>
-                                            <li class="list-group-item">Size: ${d.size} m<sup>2</sup></li>
-                                            <li class="list-group-item">Year Build: ${d.yearBuild}</li>
-                                        </ul>
-                                        <div class="card-body">
-                                            <a href="${d.id}" class="card-link">More Details</a>
-                                        </div>
-                                    </div>
-                                   </div>`
+                        return reuseHTML(d)
                     });
                     $('#Index-bottom-row-search-function').html(newHTML.join(''));
                     $('#search-box-postal').val('');
@@ -241,23 +162,7 @@ $(document).ready(function () {
                 }
                 else {
                     var newHTML = resp.data.map(d => {
-                        return `<div class="col-lg-4 house-listing">
-                                    <div class="card">
-                                        <img src="${d.firstImage}" class="card-img-top card-img-size" alt="Apartment Image">
-                                        <div class="card-body">
-                                            <h5 class="card-title">${d.locationID_streetName} ${d.locationID_houseNumber}</h5>
-                                            <p class="card-text">${d.description}</p>
-                                        </div>
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">Price: ${d.price} Kr</li>
-                                            <li class="list-group-item">Size: ${d.size} m<sup>2</sup></li>
-                                            <li class="list-group-item">Year Build: ${d.yearBuild}</li>
-                                        </ul>
-                                        <div class="card-body">
-                                            <a href="${d.id}" class="card-link">More Details</a>
-                                        </div>
-                                    </div>
-                                   </div>`
+                        return reuseHTML(d)
                     });
                     $('#Index-bottom-row-search-function').html(newHTML.join(''));
                     $('#main-search-text').val('');
