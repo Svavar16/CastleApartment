@@ -18,6 +18,7 @@ def make_transaction(request, apartment_id, payment_id):
         transaction.save()
         apartment.sellerID = buyer
         apartment.save()
+        apartment.forSale = False
         if not credit_card.save:
             credit_card.delete()
         return render(request, 'Transactions/make_transaction.html', {
