@@ -89,6 +89,8 @@ def getUserProfile(request, id=None):
         'profile_user': get_object_or_404(User, pk=id)
     })
 
+
+@login_required()
 def change_password(request):
     user = request.user
     if request.method == 'POST':

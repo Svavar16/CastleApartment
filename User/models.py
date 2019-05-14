@@ -11,7 +11,7 @@ class CardDetails(models.Model):
     dateOfExpire = models.DateField()
     CVV = models.CharField(max_length=3)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    save = models.BooleanField()
+    saved = models.BooleanField()
 
     def __str__(self):
         return self.cardNumber
