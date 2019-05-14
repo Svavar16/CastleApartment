@@ -13,7 +13,7 @@
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body id="body-color">
+<body id="body-color" style="padding-bottom: 100px">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/">Castle Apartment</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +40,7 @@
        </div>
     </nav>
     <!--<img src="{{ user.profileimage.img }}">-->
-    <div class="container room-for-navbar">
+    <div class="container room-for-navbar" style="padding-bottom: 20px">
         {% block content %}
 
         {% endblock %}
@@ -53,7 +53,7 @@
     <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static 'js/index.js' %}"></script>
 </body>
-<footer style="border-top: 1px black; border-top-style: solid; padding-top: 10px">
+<footer style="border-top: 1px black; border-top-style: solid; padding-top: 10px;">
     <p class="text-center">{% now "Y" %}, Castle Apartments<br> All right reserved</p>
 </footer>
 </html>
