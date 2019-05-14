@@ -30,7 +30,7 @@ def index(request):
             'description': x.description,
             'sellerID': x.sellerID.id,
             'firstImage': x.apartmentimage_set.first().image,
-        } for x in Apartments.objects.filter(locationID__streetName__icontains=search_filter)]
+        } for x in Apartments.objects.filter(locationID__streetName__icontains=search_filter, forSale=True)]
         if 'search_filter' in request.GET and request.user.is_authenticated:
             print("this works search with user")
             search_filter = request.GET['search_filter']
@@ -85,7 +85,7 @@ def all_listing(request):
             'description': x.description,
             'sellerID': x.sellerID.id,
             'firstImage': x.apartmentimage_set.first().image,
-        } for x in Apartments.objects.filter(locationID__streetName__icontains=search_filter)]
+        } for x in Apartments.objects.filter(locationID__streetName__icontains=search_filter, forSale=True)]
         if 'search_filter' in request.GET and request.user.is_authenticated:
             print("this works search with user")
             search_filter = request.GET['search_filter']
@@ -158,7 +158,7 @@ def all_listing(request):
             'description': x.description,
             'sellerID': x.sellerID.id,
             'firstImage': x.apartmentimage_set.first().image,
-        } for x in Apartments.objects.filter(locationID__postalCode__exact=search_postal)]
+        } for x in Apartments.objects.filter(locationID__postalCode__exact=search_postal, forSale=True)]
         return JsonResponse({'data': apartments})
 
     context = {'apartments': Apartments.objects.all()}

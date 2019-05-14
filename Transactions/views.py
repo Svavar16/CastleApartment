@@ -29,6 +29,7 @@ def make_transaction(request, apartment_id, payment_id):
         })
     return render(request, 'apartments/index.html')
 
+
 def review(request, apartment_id, payment_id=None):
     if payment_id == None:
         payment_id=request.POST['CardSelect']
