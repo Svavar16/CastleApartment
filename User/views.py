@@ -7,6 +7,9 @@ from User.forms.create_user import CreateUserForm
 from User.forms.select_card import SelectCardForm
 from User.models import ProfileImage
 from User.forms.edit_profile import EditProfileForm, EditImageForm
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+
 
 def register(request):
     if request.method == 'POST':
@@ -86,4 +89,15 @@ def getUserProfile(request, id=None):
         'profile_user': get_object_or_404(User, pk=id)
     })
 
+def change_password(request):
+    user = request.user
+    if request.method == 'POST':
+        form = PasswordChangeForm(user, data=request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            return redirect('myprofile')
+    return render(request, 'User/change_password.html', {
+        'form': PasswordChangeForm(user)
+    })
 
