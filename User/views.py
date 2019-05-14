@@ -14,18 +14,18 @@ from django.contrib.auth.forms import PasswordChangeForm
 def register(request):
     if request.method == 'POST':
         form = CreateUserForm(data=request.POST)
-        if form.is_valid():
+        if form.is_valid() and len(request.POST['image']) < 1000:
             form = form.save(commit=False)
             user = User.objects.create_user(username=form.username,
                                             email=form.email,
                                             password=form.password)
             user.first_name = form.first_name
             user.last_name = form.last_name
-            user.save()
             if request.POST['image']:
                 userImage = ProfileImage(img=request.POST['image'], user=user)
             else:
                 userImage = ProfileImage(img='', user=user)
+            user.save()
             userImage.save()
             return redirect('login')
     return render(request, 'user/register.html', {
