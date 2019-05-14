@@ -1,20 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{{ profile_user.username }}</h1>
-    <h3>Email: {{ profile_user.email }}</h3>
-    <h3>First Name: {{ profile_user.first_name }}</h3>
-    <h3>Last Name: {{ profile_user.last_name }}</h3>
-    <h3>Date Joined: {{ profile_user.date_joined }}</h3>
-    <h3>Last Login: {{ profile_user.last_login }}</h3>
-
-    <div class="sell-house col-lg-6" style="text-align: right">
+    <img class="profile-image" src="{{ profile_user.profileimage.img }}">
+    <div class="profile-text">
+        <h1>{{ profile_user.username }}</h1>
+        <h3>Email: {{ profile_user.email }}</h3>
+        <h3>First Name: {{ profile_user.first_name }}</h3>
+        <h3>Last Name: {{ profile_user.last_name }}</h3>
+        <h3>Date Joined: {{ profile_user.date_joined }}</h3>
+        <h3>Last Login: {{ profile_user.last_login }}</h3>
+    </div>
+    <div class="sell-house col-lg-6" style="text-align: right;">
                 <a href="{% url 'edit_profile' %}">
                 <button class="sell-house-btn">
                     Edit Profile
                 </button>
             </a>
-        </div>
+    </div>
+
+
+
 
 {% endblock %}
 
