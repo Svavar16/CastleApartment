@@ -13,18 +13,20 @@ def make_transaction(request, apartment_id, payment_id):
     apartment = get_object_or_404(Apartments, pk=apartment_id)
     seller = User.objects.get(pk=apartment.sellerID.id)
     credit_card = get_object_or_404(CardDetails, pk=payment_id)
-    transaction = Transactions(buyer=buyer, seller=seller, payment=credit_card, apartment=apartment)
-    transaction.save()
-    apartment.sellerID = buyer
-    apartment.save()
-    if credit_card.save == False:
-        credit_card.delete()
-    return render(request, 'Transactions/make_transaction.html', {
-        'buyer': buyer,
-        'apartment': apartment,
-        'seller': seller,
-        'credit_card': credit_card.cardNumber[-4:],
-    })
+    if credit_card.ower == buyer and buyer != seller:
+        transaction = Transactions(buyer=buyer, seller=seller, payment=credit_card, apartment=apartment)
+        transaction.save()
+        apartment.sellerID = buyer
+        apartment.save()
+        if not credit_card.save:
+            credit_card.delete()
+        return render(request, 'Transactions/make_transaction.html', {
+            'buyer': buyer,
+            'apartment': apartment,
+            'seller': seller,
+            'credit_card': credit_card.cardNumber[-4:],
+        })
+    return render(request, 'apartments/index.html')
 
 def review(request, apartment_id, payment_id=None):
     if payment_id == None:
