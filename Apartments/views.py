@@ -26,7 +26,6 @@ def index(request):
             'firstImage': x.apartmentimage_set.first().image,
         } for x in Apartments.objects.filter(locationID__streetName__icontains=search_filter, forSale=True)]
         if 'search_filter' in request.GET and request.user.is_authenticated:
-            print("this works search with user")
             search_filter = request.GET['search_filter']
             userID = request.user
             searchedObject = SearchHistory.objects.create(userID=userID, searchItem=search_filter)
@@ -82,7 +81,6 @@ def all_listing(request):
             'firstImage': x.apartmentimage_set.first().image,
         } for x in Apartments.objects.filter(locationID__streetName__icontains=search_filter, forSale=True)]
         if 'search_filter' in request.GET and request.user.is_authenticated:
-            print("this works search with user")
             search_filter = request.GET['search_filter']
             userID = request.user
             searchedObject = SearchHistory.objects.create(userID=userID, searchItem=search_filter)
