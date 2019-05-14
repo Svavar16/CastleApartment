@@ -13,13 +13,13 @@ def make_transaction(request, apartment_id, payment_id):
     apartment = get_object_or_404(Apartments, pk=apartment_id)
     seller = User.objects.get(pk=apartment.sellerID.id)
     credit_card = get_object_or_404(CardDetails, pk=payment_id)
-    if credit_card.ower == buyer and buyer != seller and apartment.forSale:
+    if credit_card.owner == buyer and buyer != seller and apartment.forSale:
         transaction = Transactions(buyer=buyer, seller=seller, payment=credit_card, apartment=apartment)
         transaction.save()
         apartment.sellerID = buyer
         apartment.save()
         apartment.forSale = False
-        if not credit_card.save:
+        if not credit_card.saved:
             credit_card.delete()
         return render(request, 'Transactions/make_transaction.html', {
             'buyer': buyer,

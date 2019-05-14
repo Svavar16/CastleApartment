@@ -16,7 +16,7 @@ $(document).ready(function () {
                     var newHTML = resp.data.map(d => {
                         return `<div class="col-lg-4 house-listing">
                                 <div class="card">
-                                    <img src="${d.firstImage}" class="card-img-top" alt="Apartment Image">
+                                    <img src="${d.firstImage}" class="card-img-top card-img-size" alt="Apartment Image">
                                     <div class="card-body">
                                         <h5 class="card-title">${d.locationID_streetName} ${d.locationID_houseNumber}</h5>
                                         <p class="card-text">${d.description}</p>

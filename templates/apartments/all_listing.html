@@ -48,7 +48,7 @@
         {% for apartment in apartments %}
             <div class="col-lg-4 house-listing">
                 <div class="card card-width">
-                    <img src="{{ apartment.apartmentimage_set.first.image }}" class="card-img-top" alt="Apartment Image">
+                    <img src="{{ apartment.apartmentimage_set.first.image }}" class="card-img-top card-img-size" alt="Apartment Image">
                     <div class="card-body">
                         <h5 class="card-title">{{ apartment.locationID.streetName }} {{ apartment.locationID.houseNumber }}</h5>
                         <p class="card-text">{{ apartment.description|truncatechars:100 }}</p>
