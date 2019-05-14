@@ -73,7 +73,13 @@ def addCard(request, apartment_id):
     })
 
 
-def getUserProfile(request, id):
+def getUserProfile(request, id=None):
+    if not id:
+        user = request.user
+        if user.is_authenticated:
+            return render(request, 'User/user_profile.html', {
+                'profile_user': user
+            })
     return render(request, 'User/user_profile.html', {
         'profile_user': get_object_or_404(User, pk=id)
     })
