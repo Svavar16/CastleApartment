@@ -101,6 +101,10 @@
 .house-listing {
     padding: 2rem;
 }
+.card-img-size {
+    width: 200px;
+    height: 250px;
+}
 
 .profile-image {
     text-align: left;
