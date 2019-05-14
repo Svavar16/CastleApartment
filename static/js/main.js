@@ -16,8 +16,8 @@ $(document).ready(function () {
                                     <p class="card-text">${d.description}</p>
                                 </div>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Price: ${d.price}</li>
-                                    <li class="list-group-item">Size: ${d.size}</li>
+                                    <li class="list-group-item">Price: ${d.price} Kr</li>
+                                    <li class="list-group-item">Size: ${d.size} m<sup>2</sup></li>
                                     <li class="list-group-item">Year Build: ${d.yearBuild}</li>
                                 </ul>
                                 <div class="card-body">
@@ -54,8 +54,8 @@ $(document).ready(function () {
                                     <p class="card-text">${d.description}</p>
                                 </div>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Price: ${d.price}</li>
-                                    <li class="list-group-item">Size: ${d.size}</li>
+                                    <li class="list-group-item">Price: ${d.price} Kr</li>
+                                    <li class="list-group-item">Size: ${d.size} m<sup>2</sup></li>
                                     <li class="list-group-item">Year Build: ${d.yearBuild}</li>
                                 </ul>
                                 <div class="card-body">
@@ -91,8 +91,8 @@ $(document).ready(function () {
                                     <p class="card-text">${d.description}</p>
                                 </div>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Price: ${d.price}</li>
-                                    <li class="list-group-item">Size: ${d.size}</li>
+                                    <li class="list-group-item">Price: ${d.price} Kr</li>
+                                    <li class="list-group-item">Size: ${d.size} m<sup>2</sup></li>
                                     <li class="list-group-item">Year Build: ${d.yearBuild}</li>
                                 </ul>
                                 <div class="card-body">
@@ -126,8 +126,8 @@ $(document).ready(function () {
                                     <p class="card-text">${d.description}</p>
                                 </div>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Price: ${d.price}</li>
-                                    <li class="list-group-item">Size: ${d.size}</li>
+                                    <li class="list-group-item">Price: ${d.price} Kr</li>
+                                    <li class="list-group-item">Size: ${d.size} m<sup>2</sup></li>
                                     <li class="list-group-item">Year Build: ${d.yearBuild}</li>
                                 </ul>
                                 <div class="card-body">
@@ -160,8 +160,8 @@ $(document).ready(function () {
                                     <p class="card-text">${d.description}</p>
                                 </div>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Price: ${d.price}</li>
-                                    <li class="list-group-item">Size: ${d.size}</li>
+                                    <li class="list-group-item">Price: ${d.price} Kr</li>
+                                    <li class="list-group-item">Size: ${d.size} m<sup>2</sup></li>
                                     <li class="list-group-item">Year Build: ${d.yearBuild}</li>
                                 </ul>
                                 <div class="card-body">
@@ -196,8 +196,8 @@ $(document).ready(function () {
                                     <p class="card-text">${d.description}</p>
                                 </div>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Price: ${d.price}</li>
-                                    <li class="list-group-item">Size: ${d.size}</li>
+                                    <li class="list-group-item">Price: ${d.price} Kr</li>
+                                    <li class="list-group-item">Size: ${d.size} m<sup>2</sup></li>
                                     <li class="list-group-item">Year Build: ${d.yearBuild}</li>
                                 </ul>
                                 <div class="card-body">
@@ -233,8 +233,8 @@ $(document).ready(function () {
                                     <p class="card-text">${d.description}</p>
                                 </div>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Price: ${d.price}</li>
-                                    <li class="list-group-item">Size: ${d.size}</li>
+                                    <li class="list-group-item">Price: ${d.price} Kr</li>
+                                    <li class="list-group-item">Size: ${d.size} m<sup>2</sup></li>
                                     <li class="list-group-item">Year Build: ${d.yearBuild}</li>
                                 </ul>
                                 <div class="card-body">
