@@ -252,11 +252,13 @@ def get_three_random_apartments(request):
 
 def get_newest_apartment(request):
     apartment_list = Apartments.objects.all()
-    apartment_new = sorted(apartment_list, key=operator.attrgetter('yearBuild'))[0]
+    apartment_new = sorted(apartment_list, key=operator.attrgetter('yearBuild'))[::-1][0]
 
     apartment_image = []
     apartment_image.append({"image": apartment_new.apartmentimage_set.first().image,
-                            "id": apartment_new.id})
+                            "id": apartment_new.id,
+                            "locationID_streetname": apartment_new.locationID.streetName,
+                            "locationID_houseNum": apartment_new.locationID.houseNumber})
 
     return JsonResponse(apartment_image, safe=False)
 
