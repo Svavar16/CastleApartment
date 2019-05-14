@@ -107,7 +107,7 @@
 
 }
 .profile-text {
-    float: right;
     text-align: right;
+    width: 600px;
 }
 
