@@ -16,7 +16,10 @@
             <p>Seller: <a href="{% url 'user_profile' id=apartments.sellerID.id %}">{{ apartments.sellerID.first_name }} {{ sellerID.first_name }}</a></p>
             <p class="single-ap-desc card-text">Description: {{ apartments.description }}</p>
             <br>
-            <a href="{% url 'credit_card' apartment_id=apartments.id %}">BUY</a>
+            <a href="{% url 'credit_card' apartment_id=apartments.id %}">BUY</a><br>
+            {% if perms.Apartments.change_apartments %}
+                <a href="{% url 'change_price' apartments.id %}">Change Price</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
