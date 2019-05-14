@@ -50,8 +50,10 @@
 }
 .sell-house-btn {
     background-color: gold;
-    padding: 50px 100px 50px 100px;
-    margin: auto;
+    /*padding: 50px 100px 50px 100px;*/
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    width: 300px;
+    height: 50px;
 }
 .sell-house {
     margin: auto;
@@ -120,4 +122,20 @@
 #id_garage {
     margin-left: 5px;
     margin-top: 7px;
+}
+.new_img_caption {
+    position: absolute;
+    width: 400px;
+    height: 50px;
+    bottom: 0px;
+    left: 0px;
+    color: #ffffff;
+    background: green;
+	text-align:center;
+	font-weight:bold;
+	opacity:0.7;
+}
+.new-img-holding {
+    position: relative;
+
 }

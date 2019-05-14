@@ -21,21 +21,22 @@
         <h3>Date Joined: {{ profile_user.date_joined }}</h3>
         <h3>Last Login: {{ profile_user.last_login }}</h3>
     </div>
-    <div class="sell-house col-lg-6" style="">
-                <a href="{% url 'edit_profile' %}">
+    <div class="row">
+        <div class="sell-house col-lg-6" style="">
+                    <a href="{% url 'edit_profile' %}">
+                    <button class="sell-house-btn">
+                        Edit Profile
+                    </button>
+                </a>
+        </div>
+        <div class="col-lg-6">
+            <a href="{% url 'change_password' %}">
                 <button class="sell-house-btn">
-                    Edit Profile
+                    Change Password
                 </button>
             </a>
+        </div>
     </div>
-    <div class="col-lg-6">
-        <a href="{% url 'change_password' %}">
-            <button class="sell-house-btn">
-                Change Password
-            </button>
-        </a>
-    </div>
-
 
 
 {% endblock %}

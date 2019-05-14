@@ -2,6 +2,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+
     <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}">
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -25,10 +26,10 @@
         </div>
           {% if user.is_authenticated %}
             <div class = "ml-auto mr-1 navbar-nav test-right ml-auto mr-1">
-                <a href="/user/profile/{{ user.id }}">
+                <a href="{% url 'myprofile' %}">
                     <img class="profile-image-navbar src=" src=" {{ user.profileimage.img }}" />
                 </a>
-                <a class="nav-item nav-link" href="/user/profile/{{ user.id }}">hello {{ user.first_name }}</a>
+                <a class="nav-item nav-link" href="{% url 'myprofile' %}">hello {{ user.first_name }}</a>
                 <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
             </div>
           {% else %}
@@ -45,6 +46,7 @@
 
         {% endblock %}
     </div>
+
     <!-- Bootstrap js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
