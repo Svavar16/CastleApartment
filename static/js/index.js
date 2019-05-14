@@ -1,5 +1,6 @@
 
-  window.onload = function () {
+
+function getThreeRandomApartments() {
     var res = "";
     $.ajax({
                 url: 'get_three_random_apartments/',
@@ -22,5 +23,29 @@
                     $('#get_three_elements_app').append(res);
 
             }
-  })};
+    })
+};
+
+function getNewestApartment() {
+    var res = "";
+    $.ajax({
+                url: 'get_newest_apartment/',
+                datatype: 'json',
+                type: 'GET',
+                success: function(data) {
+                    $.each(data, function (index, element) {
+                        res = "<a href='/apartments/" + data[index].id + "'><div class=\"\">\n" +
+                            "            <h3 class=\"new-list-h3\">New Listings</h3>\n" +
+                            "            <div >\n" +
+                            "                <img class=\"new-list-img\" src=\" " + data[index].image +  "\" />\n" +
+                            "            </div>\n" +
+                            "        </div> </a>";
+                    });
+
+                    $('#get_newest_apartment_app').append(res);
+
+            }
+    })
+};
+
 

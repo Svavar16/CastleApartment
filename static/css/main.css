@@ -115,3 +115,9 @@
     height: 48px;
 }
 
+#id_privateEntrance,
+#id_animalsAllowed,
+#id_garage {
+    margin-left: 5px;
+    margin-top: 7px;
+}
