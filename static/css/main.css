@@ -101,12 +101,18 @@
 .house-listing {
     padding: 2rem;
 }
+.card-img-size {
+    width: 200px;
+    height: 250px;
+}
 
 .profile-image {
     text-align: left;
     width: 400px;
     height: 400px;
-
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 .profile-text {
     text-align: right;

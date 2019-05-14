@@ -3,33 +3,33 @@
 {% block content %}
     <div class="row">
         <div class="col-lg-6">
-            <img style="width: 400px; height: 400px" class="" src="{{ profile_user.profileimage.img }}" />
+            <img class="profile-image " src="{{ profile_user.profileimage.img }}" />
         </div>
         <div class="col-lg-6">
+            <h1>{{ profile_user.username }}</h1>
+            <h3>Email: {{ profile_user.email }}</h3>
+            <h3>First Name: {{ profile_user.first_name }}</h3>
+            <h3>Last Name: {{ profile_user.last_name }}</h3>
+            <h3>Date Joined: {{ profile_user.date_joined }}</h3>
+            <h3>Last Login: {{ profile_user.last_login }}</h3>
+        </div>
+    </div>
+    <div class="row room-for-navbar">
+        <div class="col-lg-4">
             <a href="{% url 'change_image' %}">
                 <button class="sell-house-btn">
                     Change Profile Image
                 </button>
             </a>
         </div>
-    </div>
-    <div class="col-lg-6">
-        <h1>{{ profile_user.username }}</h1>
-        <h3>Email: {{ profile_user.email }}</h3>
-        <h3>First Name: {{ profile_user.first_name }}</h3>
-        <h3>Last Name: {{ profile_user.last_name }}</h3>
-        <h3>Date Joined: {{ profile_user.date_joined }}</h3>
-        <h3>Last Login: {{ profile_user.last_login }}</h3>
-    </div>
-    <div class="row">
-        <div class="sell-house col-lg-6" style="">
-                    <a href="{% url 'edit_profile' %}">
-                    <button class="sell-house-btn">
-                        Edit Profile
-                    </button>
-                </a>
+        <div class="sell-house col-lg-4">
+            <a href="{% url 'edit_profile' %}">
+                <button class="sell-house-btn">
+                    Edit Profile
+                </button>
+            </a>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <a href="{% url 'change_password' %}">
                 <button class="sell-house-btn">
                     Change Password
@@ -37,7 +37,5 @@
             </a>
         </div>
     </div>
-
-
 {% endblock %}
 
