@@ -9,7 +9,7 @@ $(document).ready(function () {
             type: 'GET',
             success: function (resp) {
                 if (!$.trim(resp.data)) {
-                    $('#apartment-card-details').html('<div class="new-list-h3"><h2>unable to find any listings at the searched address</h2></div>')
+                    $('#apartment-card-details').html('<div class="new-list-h3 sell-house house-listing"><h2>unable to find any listings at the searched address</h2></div>')
                     $('#search-box').val('');
                 }
                 else {
@@ -194,7 +194,7 @@ $(document).ready(function () {
             type: 'GET',
             success: function (resp) {
                 if (!$.trim(resp.data)) {
-                    $('#Index-bottom-row-search-function').html('<div class="new-list-h3"><h2>unable to find any listings at the searched post code</h2></div>')
+                    $('#Index-bottom-row-search-function').html('<div class="new-list-h3 sell-house house-listing"><h2>unable to find any listings at the searched post code</h2></div>')
                     $('#search-box-postal').val('');
                 }
                 else {
@@ -236,7 +236,7 @@ $(document).ready(function () {
             type: 'GET',
             success: function (resp) {
                 if (!$.trim(resp.data)) {
-                    $('#Index-bottom-row-search-function').html('<div class="new-list-h3"><h2>unable to find any listings at the searched address</h2></div>')
+                    $('#Index-bottom-row-search-function').html('<div class="new-list-h3 sell-house house-listing"><h2>unable to find any listings at the searched address</h2></div>')
                     $('#main-search-text').val('');
                 }
                 else {
