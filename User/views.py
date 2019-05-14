@@ -7,6 +7,9 @@ from User.forms.create_user import CreateUserForm
 from User.forms.select_card import SelectCardForm
 from User.models import ProfileImage
 from User.forms.edit_profile import EditProfileForm, EditImageForm
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+
 
 def register(request):
     if request.method == 'POST':
@@ -21,7 +24,9 @@ def register(request):
             user.save()
             if request.POST['image']:
                 userImage = ProfileImage(img=request.POST['image'], user=user)
-                userImage.save()
+            else:
+                userImage = ProfileImage(img='', user=user)
+            userImage.save()
             return redirect('login')
     return render(request, 'user/register.html', {
         'form': CreateUserForm()
@@ -44,14 +49,14 @@ def editProfile(request):
 @login_required()
 def editImage(request):
     user = request.user
-    image = get_object_or_404(ProfileImage, user=user)
+    image = ProfileImage.objects.filter(user=user)
     if request.method == 'POST':
-        form = EditImageForm(instance=image, data=request.POST)
+        form = EditImageForm(instance=image.first(), data=request.POST)
         if form.is_valid():
             form.save()
             return redirect('user_profile', id=user.id)
     return render(request, 'user/change_image.html', {
-        'form': EditImageForm(instance=image)
+        'form': EditImageForm(instance=image.first())
     })
 
 def addCard(request, apartment_id):
@@ -84,4 +89,15 @@ def getUserProfile(request, id=None):
         'profile_user': get_object_or_404(User, pk=id)
     })
 
+def change_password(request):
+    user = request.user
+    if request.method == 'POST':
+        form = PasswordChangeForm(user, data=request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            return redirect('myprofile')
+    return render(request, 'User/change_password.html', {
+        'form': PasswordChangeForm(user)
+    })
 
