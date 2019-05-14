@@ -229,43 +229,6 @@ $(document).ready(function () {
 
     //search function from the index
     $('#main-search-btn').on('click', function (e) {
-<<<<<<< HEAD
-      e.preventDefault();
-      var searchText = $('#main-search-text').val();
-      $.ajax({
-         url: '?search_filter=' + searchText,
-         type: 'GET',
-         success: function (resp) {
-             var newHTML = resp.data.map(d => {
-                 return `<h3 class="new-list-h3 house-listing">If you want a more specific search, then try our seach engine in the all listing section</h3>
-                            <div class="col-lg-4 house-listing">
-                            <div class="card">
-                                <img src="${d.firstImage}" class="card-img-top" alt="Apartment Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">${d.locationID_streetName} ${d.locationID_houseNumber}</h5>
-                                    <p class="card-text">${d.description}</p>
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Price: ${d.price} Kr</li>
-                                    <li class="list-group-item">Size: ${d.size} m<sup>2</sup></li>
-                                    <li class="list-group-item">Year Build: ${d.yearBuild}</li>
-                                </ul>
-                                <div class="card-body">
-                                    <a href="${d.id}" class="card-link">More Details</a>
-                                </div>
-                            </div>
-                           </div>`
-             });
-             $('#Index-bottom-row-search-function').html(newHTML.join(''));
-             $('#main-search-text').val('')
-         },
-         error: function (xhr, status, error) {
-            // todo, a way to display the error
-            console.error(error)
-         }
-      })
-   });
-=======
         e.preventDefault();
         var searchText = $('#main-search-text').val();
         $.ajax({
@@ -286,8 +249,8 @@ $(document).ready(function () {
                                             <p class="card-text">${d.description}</p>
                                         </div>
                                         <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">Price: ${d.price}</li>
-                                            <li class="list-group-item">Size: ${d.size}</li>
+                                            <li class="list-group-item">Price: ${d.price} Kr</li>
+                                            <li class="list-group-item">Size: ${d.size} m<sup>2</sup></li>
                                             <li class="list-group-item">Year Build: ${d.yearBuild}</li>
                                         </ul>
                                         <div class="card-body">
@@ -306,7 +269,6 @@ $(document).ready(function () {
             }
         })
     });
->>>>>>> 00b3172f786fd43bb832a0b5979b45f7f2c891e2
 
     //checks with the user if he want do back from a form or not, notifies him that he will lose his/her data
     var formhaschanged = false;
