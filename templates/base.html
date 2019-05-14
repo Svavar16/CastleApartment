@@ -35,7 +35,7 @@
                 <a href="/user/profile/{{ user.id }}">
                     <img class="profile-image-navbar src=" src=" {{ user.profileimage.img }}" />
                 </a>
-                <a class="nav-item nav-link" href="/user/profile/{{ user.id }}">hello {{ user.first_name }}</a>
+                <a class="nav-item nav-link" href="{% url 'myprofile' %}">hello {{ user.first_name }}</a>
                 <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
             </div>
           {% else %}
