@@ -2,25 +2,38 @@
 
 {% block content %}
     <div class="single-ap jumbotron">
-        <img src="{{ apartments.apartmentimage_set.first.image }}" class="single-ap-img" alt="Apartment Image">
-        <h1>{{ apartments.locationID.streetName }} {{ apartments.locationID.houseNumber }}</h1>
-        <h3>{{ apartments.locationID.city }} {{ apartments.locationID.postalCode }}</h3>
-        <div class="single-ap-info">
-            <p>Price: {{ apartments.price }} Kr</p>
-            <p>Size: {{ apartments.size }} m<sup>2</sup></p>
-            <p>Built: {{ apartments.yearBuild }}</p>
-            <p>Rooms: {{ apartments.rooms }}</p>
-            <p>Private Entrance: {% if apartments.privateEntrance %} Yes {% else %} No {% endif %}</p>
-            <p>Animals: {% if apartments.animalsAllowed %} Yes {% else %} No {% endif %}</p>
-            <p>Garage: {% if apartments.garage%} Yes {% else %} No {% endif %}</p>
-            <p>Seller: <a href="{% url 'user_profile' id=apartments.sellerID.id %}">{{ apartments.sellerID.first_name }} {{ sellerID.first_name }}</a></p>
-            <p class="single-ap-desc card-text">Description: {{ apartments.description }}</p>
-            <br>
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="{{ apartments.apartmentimage_set.first.image }}" class="single-ap-img" alt="Apartment Image">
+            </div>
+                <div class="col-lg-6">
+                    <h1>{{ apartments.locationID.streetName }} {{ apartments.locationID.houseNumber }}</h1>
+                    <h3>{{ apartments.locationID.city }} {{ apartments.locationID.postalCode }}</h3>
+                    <div class="single-ap-info">
+                        <p>Price: {{ apartments.price }} Kr</p>
+                        <p>Size: {{ apartments.size }} m<sup>2</sup></p>
+                        <p>Built: {{ apartments.yearBuild }}</p>
+                        <p>Rooms: {{ apartments.rooms }}</p>
+                        <p>Private Entrance: {% if apartments.privateEntrance %} Yes {% else %} No {% endif %}</p>
+                        <p>Animals: {% if apartments.animalsAllowed %} Yes {% else %} No {% endif %}</p>
+                        <p>Garage: {% if apartments.garage%} Yes {% else %} No {% endif %}</p>
+                        <p>Seller: <a href="{% url 'user_profile' id=apartments.sellerID.id %}">{{ apartments.sellerID.first_name }} {{ sellerID.first_name }}</a></p>
+                        <p class="single-ap-desc card-text">Description: {{ apartments.description }}</p>
+                        <br>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
             {% if apartments.forSale %}
-                <a href="{% url 'credit_card' apartment_id=apartments.id %}">BUY</a><br>
+                <div class="sell-house house-listing">
+                    <a class="btn btn-primary sell-house-btn" href="{% url 'credit_card' apartment_id=apartments.id %}">BUY</a><br>
+                </div>
             {% endif %}
             {% if perms.Apartments.change_apartments %}
-                <a href="{% url 'change_price' apartments.id %}">Change Price</a>
+                <div class="sell-house house-listing">
+                    <a class="btn btn-primary sell-house-btn" href="{% url 'change_price' apartments.id %}">Change Price</a>
+                </div>
             {% endif %}
         </div>
     </div>

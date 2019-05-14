@@ -9,14 +9,14 @@ $(document).ready(function () {
             type: 'GET',
             success: function (resp) {
                 if (!$.trim(resp.data)) {
-                    $('#apartment-card-details').html('<div class="new-list-h3"><h2>unable to find any listings at the searched address</h2></div>')
+                    $('#apartment-card-details').html('<div class="new-list-h3 sell-house house-listing"><h2>unable to find any listings at the searched address</h2></div>')
                     $('#search-box').val('');
                 }
                 else {
                     var newHTML = resp.data.map(d => {
                         return `<div class="col-lg-4 house-listing">
                                 <div class="card">
-                                    <img src="${d.firstImage}" class="card-img-top card-img-size" alt="Apartment Image">
+                                    <img src="${d.firstImage}" class="card-img-top card-img-size card-img-size" alt="Apartment Image">
                                     <div class="card-body">
                                         <h5 class="card-title">${d.locationID_streetName} ${d.locationID_houseNumber}</h5>
                                         <p class="card-text">${d.description}</p>
@@ -54,7 +54,7 @@ $(document).ready(function () {
                 var newHTML = resp.data.map(d => {
                     return `<div class="col-lg-4 house-listing" >
                             <div class="card">
-                                <img src="${d.firstImage}" class="card-img-top" alt="Apartment Image">
+                                <img src="${d.firstImage}" class="card-img-top card-img-size" alt="Apartment Image">
                                 <div class="card-body">
                                     <h5 class="card-title">${d.locationID_streetName} ${d.locationID_houseNumber}</h5>
                                     <p class="card-text">${d.description}</p>
@@ -91,7 +91,7 @@ $(document).ready(function () {
                 var newHTML = resp.data.map(d => {
                     return `<div class="col-lg-4 house-listing" >
                             <div class="card">
-                                <img src="${d.firstImage}" class="card-img-top" alt="Apartment Image">
+                                <img src="${d.firstImage}" class="card-img-top card-img-size" alt="Apartment Image">
                                 <div class="card-body">
                                     <h5 class="card-title">${d.locationID_streetName} ${d.locationID_houseNumber}</h5>
                                     <p class="card-text">${d.description}</p>
@@ -126,7 +126,7 @@ $(document).ready(function () {
                 var newHTML = resp.data.map(d => {
                     return `<div class="col-lg-4 house-listing" >
                             <div class="card">
-                                <img src="${d.firstImage}" class="card-img-top" alt="Apartment Image">
+                                <img src="${d.firstImage}" class="card-img-top card-img-size" alt="Apartment Image">
                                 <div class="card-body">
                                     <h5 class="card-title">${d.locationID_streetName} ${d.locationID_houseNumber}</h5>
                                     <p class="card-text">${d.description}</p>
@@ -160,7 +160,7 @@ $(document).ready(function () {
                 var newHTML = resp.data.map(d => {
                     return `<div class="col-lg-4 house-listing" >
                             <div class="card">
-                                <img src="${d.firstImage}" class="card-img-top" alt="Apartment Image">
+                                <img src="${d.firstImage}" class="card-img-top card-img-size" alt="Apartment Image">
                                 <div class="card-body">
                                     <h5 class="card-title">${d.locationID_streetName} ${d.locationID_houseNumber}</h5>
                                     <p class="card-text">${d.description}</p>
@@ -194,14 +194,14 @@ $(document).ready(function () {
             type: 'GET',
             success: function (resp) {
                 if (!$.trim(resp.data)) {
-                    $('#Index-bottom-row-search-function').html('<div class="new-list-h3"><h2>unable to find any listings at the searched post code</h2></div>')
+                    $('#Index-bottom-row-search-function').html('<div class="new-list-h3 sell-house house-listing"><h2>unable to find any listings at the searched post code</h2></div>')
                     $('#search-box-postal').val('');
                 }
                 else {
                     var newHTML = resp.data.map(d => {
                         return `<div class="col-lg-4 house-listing">
                                     <div class="card">
-                                        <img src="${d.firstImage}" class="card-img-top" alt="Apartment Image">
+                                        <img src="${d.firstImage}" class="card-img-top card-img-size" alt="Apartment Image">
                                         <div class="card-body">
                                             <h5 class="card-title">${d.locationID_streetName} ${d.locationID_houseNumber}</h5>
                                             <p class="card-text">${d.description}</p>
@@ -236,14 +236,14 @@ $(document).ready(function () {
             type: 'GET',
             success: function (resp) {
                 if (!$.trim(resp.data)) {
-                    $('#Index-bottom-row-search-function').html('<div class="new-list-h3"><h2>unable to find any listings at the searched address</h2></div>')
+                    $('#Index-bottom-row-search-function').html('<div class="new-list-h3 sell-house house-listing"><h2>unable to find any listings at the searched address</h2></div>')
                     $('#main-search-text').val('');
                 }
                 else {
                     var newHTML = resp.data.map(d => {
                         return `<div class="col-lg-4 house-listing">
                                     <div class="card">
-                                        <img src="${d.firstImage}" class="card-img-top" alt="Apartment Image">
+                                        <img src="${d.firstImage}" class="card-img-top card-img-size" alt="Apartment Image">
                                         <div class="card-body">
                                             <h5 class="card-title">${d.locationID_streetName} ${d.locationID_houseNumber}</h5>
                                             <p class="card-text">${d.description}</p>
