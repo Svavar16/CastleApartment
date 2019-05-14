@@ -1,6 +1,7 @@
 
 import json
 import random
+import operator
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
@@ -225,6 +226,7 @@ def change_price(request, id):
     }
     return render(request, 'apartments/change_price.html', context)
 
+
 def get_three_random_apartments(request):
     apartmentsList = Apartments.objects.all()
     apartments = []
@@ -245,4 +247,16 @@ def get_three_random_apartments(request):
                            "first_image": apartment.apartmentimage_set.first().image})
     retval = random.sample(apartments, 3)
     return JsonResponse(retval, safe=False)
+
+
+def get_newest_apartment(request):
+    apartment_list = Apartments.objects.all()
+    apartment_new = sorted(apartment_list, key=operator.attrgetter('yearBuild'))[0]
+
+    apartment_image = []
+    apartment_image.append({"image": apartment_new.apartmentimage_set.first().image,
+                            "id": apartment_new.id})
+
+    return JsonResponse(apartment_image, safe=False)
+
 
