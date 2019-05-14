@@ -2,7 +2,7 @@
 import json
 import random
 from django.contrib import auth
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render, redirect, get_object_or_404
 from Apartments.forms.apartments_form import ApartmentsCreateForm, LocationCreateForm
 from Apartments.models import ApartmentImage, Apartments, SearchHistory
@@ -210,7 +210,8 @@ def delete_apartment(request, id):
     apartment.delete()
     return redirect('apartment-index')
 
-@login_required
+
+@permission_required('Apartments.change_apartments')
 def change_price(request, id):
     if request.method == 'POST':
         price_form = ChangePriceForm(data=request.POST)
