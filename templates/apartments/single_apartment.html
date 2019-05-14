@@ -6,8 +6,8 @@
         <h1>{{ apartments.locationID.streetName }} {{ apartments.locationID.houseNumber }}</h1>
         <h3>{{ apartments.locationID.city }} {{ apartments.locationID.postalCode }}</h3>
         <div class="single-ap-info">
-            <p>Price: {{ apartments.price }}</p>
-            <p>Size: {{ apartments.size }}</p>
+            <p>Price: {{ apartments.price }} Kr</p>
+            <p>Size: {{ apartments.size }} m<sup>2</sup></p>
             <p>Built: {{ apartments.yearBuild }}</p>
             <p>Rooms: {{ apartments.rooms }}</p>
             <p>Private Entrance: {% if apartments.privateEntrance %} Yes {% else %} No {% endif %}</p>
