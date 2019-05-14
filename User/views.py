@@ -21,7 +21,9 @@ def register(request):
             user.save()
             if request.POST['image']:
                 userImage = ProfileImage(img=request.POST['image'], user=user)
-                userImage.save()
+            else:
+                userImage = ProfileImage(img='', user=user)
+            userImage.save()
             return redirect('login')
     return render(request, 'user/register.html', {
         'form': CreateUserForm()
@@ -44,14 +46,14 @@ def editProfile(request):
 @login_required()
 def editImage(request):
     user = request.user
-    image = get_object_or_404(ProfileImage, user=user)
+    image = ProfileImage.objects.filter(user=user)
     if request.method == 'POST':
-        form = EditImageForm(instance=image, data=request.POST)
+        form = EditImageForm(instance=image.first(), data=request.POST)
         if form.is_valid():
             form.save()
             return redirect('user_profile', id=user.id)
     return render(request, 'user/change_image.html', {
-        'form': EditImageForm(instance=image)
+        'form': EditImageForm(instance=image.first())
     })
 
 def addCard(request, apartment_id):
