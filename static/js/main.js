@@ -28,7 +28,8 @@ $(document).ready(function () {
             type: 'GET',
             success: function (resp) {
                 if (!$.trim(resp.data)) {
-                    $('#apartment-card-details').html('<div class="new-list-h3 sell-house house-listing"><h2>unable to find any listings at the searched address</h2></div>')
+                    $('#apartment-card-details').html('<div class="new-list-h3 sell-house house-listing">' +
+                        '<h2>unable to find any listings at the searched address</h2></div>')
                     $('#search-box').val('');
                 }
                 else {
@@ -53,7 +54,7 @@ $(document).ready(function () {
             type: 'GET',
             success: function (resp) {
                 var newHTML = resp.data.map(d => {
-                    return reuseHTML(d)
+                    return reuseHTML(d);
                 });
                 $('#apartment-card-details').html(newHTML.join(''));
             },
@@ -68,7 +69,7 @@ $(document).ready(function () {
     $('#sort-by-price-desc').on('click', function (e) {
         e.preventDefault();
         $.ajax({
-            url: 'all_listing?arrange_by_price',
+            url: 'all_listing?arrange_by_price_desc',
             type: 'GET',
             success: function (resp) {
                 //var Array = resp.data.map();

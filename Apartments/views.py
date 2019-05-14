@@ -21,15 +21,8 @@ def index(request):
             'locationID': x.locationID.id,
             'locationID_streetName': x.locationID.streetName,
             'locationID_houseNumber': x.locationID.houseNumber,
-            'locationID_city': x.locationID.city,
-            'locationID_postalCode': x.locationID.postalCode,
-            'rooms': x.rooms,
-            'privateEntrance': x.privateEntrance,
-            'animalsAllowed': x.animalsAllowed,
-            'garage': x.garage,
             'yearBuild': x.yearBuild,
             'description': x.description,
-            'sellerID': x.sellerID.id,
             'firstImage': x.apartmentimage_set.first().image,
         } for x in Apartments.objects.filter(locationID__streetName__icontains=search_filter, forSale=True)]
         if 'search_filter' in request.GET and request.user.is_authenticated:
@@ -45,7 +38,7 @@ def index(request):
 
 def all_listing(request):
     # get the Json if they are searching by price
-    if 'arrange_by_price' in request.GET:
+    if 'arrange_by_price_asc' in request.GET:
         apartments = [{
             'id': x.id,
             'price': x.price,
@@ -53,17 +46,25 @@ def all_listing(request):
             'locationID': x.locationID.id,
             'locationID_streetName': x.locationID.streetName,
             'locationID_houseNumber': x.locationID.houseNumber,
-            'locationID_city': x.locationID.city,
-            'locationID_postalCode': x.locationID.postalCode,
-            'rooms': x.rooms,
-            'privateEntrance': x.privateEntrance,
-            'animalsAllowed': x.animalsAllowed,
-            'garage': x.garage,
             'yearBuild': x.yearBuild,
             'description': x.description,
-            'sellerID': x.sellerID.id,
             'firstImage': x.apartmentimage_set.first().image,
         } for x in Apartments.objects.all().order_by('-price')]
+        return JsonResponse({'data': apartments})
+
+    # get the Json if they are searching by price
+    if 'arrange_by_price_desc' in request.GET:
+        apartments = [{
+            'id': x.id,
+            'price': x.price,
+            'size': x.size,
+            'locationID': x.locationID.id,
+            'locationID_streetName': x.locationID.streetName,
+            'locationID_houseNumber': x.locationID.houseNumber,
+            'yearBuild': x.yearBuild,
+            'description': x.description,
+            'firstImage': x.apartmentimage_set.first().image,
+        } for x in Apartments.objects.all().order_by('price')]
         return JsonResponse({'data': apartments})
 
     #get the Json if they are searching for a name
@@ -76,15 +77,8 @@ def all_listing(request):
             'locationID': x.locationID.id,
             'locationID_streetName': x.locationID.streetName,
             'locationID_houseNumber': x.locationID.houseNumber,
-            'locationID_city': x.locationID.city,
-            'locationID_postalCode': x.locationID.postalCode,
-            'rooms': x.rooms,
-            'privateEntrance': x.privateEntrance,
-            'animalsAllowed': x.animalsAllowed,
-            'garage': x.garage,
             'yearBuild': x.yearBuild,
             'description': x.description,
-            'sellerID': x.sellerID.id,
             'firstImage': x.apartmentimage_set.first().image,
         } for x in Apartments.objects.filter(locationID__streetName__icontains=search_filter, forSale=True)]
         if 'search_filter' in request.GET and request.user.is_authenticated:
@@ -104,15 +98,8 @@ def all_listing(request):
             'locationID': x.locationID.id,
             'locationID_streetName': x.locationID.streetName,
             'locationID_houseNumber': x.locationID.houseNumber,
-            'locationID_city': x.locationID.city,
-            'locationID_postalCode': x.locationID.postalCode,
-            'rooms': x.rooms,
-            'privateEntrance': x.privateEntrance,
-            'animalsAllowed': x.animalsAllowed,
-            'garage': x.garage,
             'yearBuild': x.yearBuild,
             'description': x.description,
-            'sellerID': x.sellerID.id,
             'firstImage': x.apartmentimage_set.first().image,
         } for x in Apartments.objects.all().order_by('-locationID__streetName')]
         return JsonResponse({'data': apartments})
@@ -126,15 +113,8 @@ def all_listing(request):
             'locationID': x.locationID.id,
             'locationID_streetName': x.locationID.streetName,
             'locationID_houseNumber': x.locationID.houseNumber,
-            'locationID_city': x.locationID.city,
-            'locationID_postalCode': x.locationID.postalCode,
-            'rooms': x.rooms,
-            'privateEntrance': x.privateEntrance,
-            'animalsAllowed': x.animalsAllowed,
-            'garage': x.garage,
             'yearBuild': x.yearBuild,
             'description': x.description,
-            'sellerID': x.sellerID.id,
             'firstImage': x.apartmentimage_set.first().image,
         } for x in Apartments.objects.all().order_by('locationID__streetName')]
         return JsonResponse({'data': apartments})
@@ -149,15 +129,8 @@ def all_listing(request):
             'locationID': x.locationID.id,
             'locationID_streetName': x.locationID.streetName,
             'locationID_houseNumber': x.locationID.houseNumber,
-            'locationID_city': x.locationID.city,
-            'locationID_postalCode': x.locationID.postalCode,
-            'rooms': x.rooms,
-            'privateEntrance': x.privateEntrance,
-            'animalsAllowed': x.animalsAllowed,
-            'garage': x.garage,
             'yearBuild': x.yearBuild,
             'description': x.description,
-            'sellerID': x.sellerID.id,
             'firstImage': x.apartmentimage_set.first().image,
         } for x in Apartments.objects.filter(locationID__postalCode__exact=search_postal, forSale=True)]
         return JsonResponse({'data': apartments})
