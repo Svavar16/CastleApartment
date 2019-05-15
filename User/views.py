@@ -1,7 +1,10 @@
 from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
+
+from Apartments.models import SearchHistory
 from User.forms.create_card import CreateCardForm
 from User.forms.create_user import CreateUserForm
 from User.forms.select_card import SelectCardForm
@@ -103,3 +106,16 @@ def change_password(request):
     return render(request, 'User/change_password.html', {
         'form': PasswordChangeForm(user)
     })
+
+
+def get_search_history(request):
+    user = request.user
+    context = SearchHistory.objects.filter(userID=user.id)[::-5]
+    searchlist = []
+    for item in context:
+        searchlist.append({
+                            'id': item.id,
+                            'searchItem': item.searchItem,
+                            'userID': item.userID.id,
+                        })
+    return JsonResponse({'data': searchlist}, safe=False)

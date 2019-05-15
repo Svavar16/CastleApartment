@@ -24,7 +24,7 @@ $(document).ready(function () {
 
             }
         })
-    };
+    }
 
     function getNewestApartment() {
         var res = "";
@@ -48,10 +48,10 @@ $(document).ready(function () {
 
             }
         })
-    };
+    }
 
 
     getThreeRandomApartments();
     getNewestApartment();
 
-})
+});
