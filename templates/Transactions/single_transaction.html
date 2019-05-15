@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Apartment:</h2>
+    <a href="{% url 'apartment_details' transaction.apartment.id %}"><h3>{{ transaction.apartment.locationID.streetName }} {{ transaction.apartment.locationID.houseNumber }}</h3></a>
+    <h2>Buyer:</h2>
+    <a href="{% url 'user_profile' transaction.buyer.id %}"><h3>{{ transaction.buyer.first_name }} {{ transaction.buyer.last_name }}</h3></a>
+    <h2>Seller:</h2>
+    <a href="{% url 'user_profile' transaction.seller.id %}"><h3>{{ transaction.seller.first_name }} {{ transaction.seller.last_name }}</h3></a>
+    <h2>Payment</h2>
+    <h3>XXXX - XXXX - XXXX - {{ card_number }}</h3>
+{% endblock %}

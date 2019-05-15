@@ -53,4 +53,8 @@ def list_transactions(request):
 
 
 def transaction_details(request, id):
-    pass
+    transaction = get_object_or_404(Transactions, pk=id)
+    return render(request, 'Transactions/single_transaction.html', {
+        'transaction': transaction,
+        'card_number': transaction.payment.cardNumber[-4:]
+    })
