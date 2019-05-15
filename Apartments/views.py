@@ -204,18 +204,9 @@ def get_three_random_apartments(request):
     apartments = []
     for apartment in apartmentsList:
         apartments.append({"id": apartment.id,
-                           "price": apartment.price,
-                           "size": apartment.size,
-                           "rooms": apartment.rooms,
-                           "privateEntrance": apartment.privateEntrance,
-                           "animalsAllowed": apartment.animalsAllowed,
-                           "garage": apartment.garage,
-                           "yearBuild": apartment.yearBuild,
                            "description": apartment.description,
                            "locationID_streetname": apartment.locationID.streetName,
-                           "locationID_postalcode": apartment.locationID.postalCode,
                            "locationID_houseNum": apartment.locationID.houseNumber,
-                           "locationID_city": apartment.locationID.city,
                            "first_image": apartment.apartmentimage_set.first().image})
     retval = random.sample(apartments, 3)
     return JsonResponse(retval, safe=False)

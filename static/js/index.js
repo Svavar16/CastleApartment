@@ -10,7 +10,7 @@ $(document).ready(function () {
                 $.each(data, function (index, element) {
                     res += "<div class=\"carousel-item \">\n" +
                         "<a href='/apartments/" + data[index].id + "'>" +
-                        "                <img width='400' height='600' src=\" " + data[index].first_image + " \" class=\"d-block w-100\" alt=\"...\">\n" +
+                        "                <img alt='apartment image' width='400' height='600' src=\" " + data[index].first_image + " \" class=\"d-block w-100\" alt=\"...\">\n" +
                         "                <div class=\"carousel-caption d-none d-md-block\" style='background-color: rgba(0,0,0,0.5)'>\n" +
                         "              <h5>" + data[index].locationID_streetname + " " + data[index].locationID_houseNum + "</h5>\n" +
                         "              <p>" + data[index].description + "</p>\n" +
@@ -37,7 +37,7 @@ $(document).ready(function () {
                     res = "<a href='/apartments/" + data[index].id + "'><div class=\"\">\n" +
                         "            <h3 class=\"new-list-h3\">New Listings</h3>\n" +
                         "            <div class='new-img-holding' >\n" +
-                        "                <img class=\"new-list-img\" src=\" " + data[index].image + "\" />\n" +
+                        "                <img alt='new aprtment image' class=\"new-list-img\" src=\" " + data[index].image + "\" />\n" +
                         " <div class='new_img_caption'><br>" + data[index].locationID_streetname + " " + data[index].locationID_houseNum + "  " +
                         "</div> " +
                         "            </div>\n" +
