@@ -21,7 +21,7 @@ class Location(models.Model):
         return self.id, self.streetName, self.houseNumber, self.city, self.postalCode
 
     def __str__(self):
-        return self.streetName, self.houseNumber, self.city, self.postalCode
+        return '{} {} {} {}'.format(self.streetName, self.houseNumber, self.city, self.postalCode)
 
     class Meta:
         unique_together = (('streetName', 'houseNumber', 'city', 'postalCode'),)

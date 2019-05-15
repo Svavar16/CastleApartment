@@ -10,3 +10,11 @@ class Transactions(models.Model):
     seller = models.ForeignKey(User, related_name='apartment_seller', on_delete=models.CASCADE)
     payment = models.ForeignKey(CardDetails, on_delete=models.CASCADE)
     apartment = models.ForeignKey(Apartments, on_delete=models.CASCADE)
+
+    def __str__(self):
+        ret_str = '{} Buyer: {} {} Seller: {} {}'.format(str(self.apartment.locationID),
+                                                       self.buyer.first_name,
+                                                       self.buyer.last_name,
+                                                       self.seller.first_name,
+                                                       self.seller.last_name)
+        return ret_str

@@ -2,7 +2,7 @@
 {% block content %}
     <h2>Past Transactions</h2>
     {% for transaction in transactions %}
-        <a href="{% url 'transaction_details' transaction.id %}">{{ transaction.buyer }}</a>
+        <a href="{% url 'transaction_details' transaction.id %}">{{ transaction }}</a>
         <br>
     {% endfor %}
 {% endblock %}
