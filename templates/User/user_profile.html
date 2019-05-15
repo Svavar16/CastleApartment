@@ -14,28 +14,33 @@
             <h3>Last Login: {{ profile_user.last_login }}</h3>
         </div>
     </div>
+
+
     <div class="row room-for-navbar">
-        <div class="col-lg-4">
-            <a href="{% url 'change_image' %}">
-                <button class="sell-house-btn">
-                    Change Profile Image
-                </button>
-            </a>
-        </div>
-        <div class="sell-house col-lg-4">
-            <a href="{% url 'edit_profile' %}">
-                <button class="sell-house-btn">
-                    Edit Profile
-                </button>
-            </a>
-        </div>
-        <div class="col-lg-4">
-            <a href="{% url 'change_password' %}">
-                <button class="sell-house-btn">
-                    Change Password
-                </button>
-            </a>
-        </div>
+
+        {% if profile_user.id == request.user.id %}
+            <div class="col-lg-4">
+                <a href="{% url 'change_image' %}">
+                    <button class="sell-house-btn">
+                        Change Profile Image
+                    </button>
+                </a>
+            </div>
+            <div class="sell-house col-lg-4">
+                <a href="{% url 'edit_profile' %}">
+                    <button class="sell-house-btn">
+                        Edit Profile
+                    </button>
+                </a>
+            </div>
+            <div class="col-lg-4">
+                <a href="{% url 'change_password' %}">
+                    <button class="sell-house-btn">
+                        Change Password
+                    </button>
+                </a>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
 

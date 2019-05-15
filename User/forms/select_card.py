@@ -9,4 +9,4 @@ class SelectCardForm(forms.Form):
         self.user = kwargs.pop('user')
         super(SelectCardForm, self).__init__(*args, **kwargs)
 
-        self.fields['CardSelect'].queryset = CardDetails.objects.filter(owner=self.user)
+        self.fields['CardSelect'].queryset = CardDetails.objects.filter(owner=self.user, saved=True)
