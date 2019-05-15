@@ -193,4 +193,20 @@ $(document).ready(function () {
     $('form').submit(function () {
         submitted = true;
     });
+
+    function getsearchhistory5newest() {
+        $.ajax({
+            url: 'show_history/',
+            datatype: 'Json',
+            type: 'GET',
+            success:function (resp) {
+                var newHTML = resp.data.map(d => {
+                    return `<h3>${d.searchItem}</h3>`
+                });
+                $('#get_search_history_app').html(newHTML.join(''))
+            }
+        })
+    }
+
+    getsearchhistory5newest()
 });

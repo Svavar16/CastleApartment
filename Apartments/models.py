@@ -53,6 +53,8 @@ class ApartmentImage(models.Model):
 
 
 class SearchHistoryManager(models.Manager):
+    def get_by_natural_key(self, searchItem, userID):
+        return self.get(searchItem=searchItem, userID=userID)
 
     def create_search_history(self, searchItem):
         searchItem = self.create(searchItem=searchItem)
@@ -63,11 +65,18 @@ class SearchHistoryManager(models.Manager):
         return userID
 
 
-
 class SearchHistory(models.Model):
+    objects = SearchHistoryManager()
+
     searchItem = models.CharField(max_length=50)
     userID = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    objects = SearchHistoryManager()
+    def natural_key(self):
+        return self.id, self.searchItem, self.userID,
 
+    def __str__(self):
+        return '{} {}'.format(self.searchItem, self.userID)
+
+    class Meta:
+        unique_together = (('searchItem', 'userID'),)
 
