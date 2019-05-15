@@ -31,7 +31,7 @@ def index(request):
             searchedObject = SearchHistory.objects.create(userID=userID, searchItem=search_filter)
             searchedObject.save()
         return JsonResponse({'data': apartments})
-    context = {'apartments': Apartments.objects.all()}
+    context = {'apartments': Apartments.objects.all().filter(forSale=True)}
     return render(request, 'apartments/index.html', context)
 
 
@@ -48,7 +48,7 @@ def all_listing(request):
             'yearBuild': x.yearBuild,
             'description': x.description,
             'firstImage': x.apartmentimage_set.first().image,
-        } for x in Apartments.objects.all().order_by('-price')]
+        } for x in Apartments.objects.all().order_by('-price').filter(forSale=True)]
         return JsonResponse({'data': apartments})
 
     # get the Json if they are searching by price
@@ -63,7 +63,7 @@ def all_listing(request):
             'yearBuild': x.yearBuild,
             'description': x.description,
             'firstImage': x.apartmentimage_set.first().image,
-        } for x in Apartments.objects.all().order_by('price')]
+        } for x in Apartments.objects.all().order_by('price').filter(forSale=True)]
         return JsonResponse({'data': apartments})
 
     #get the Json if they are searching for a name
@@ -99,7 +99,7 @@ def all_listing(request):
             'yearBuild': x.yearBuild,
             'description': x.description,
             'firstImage': x.apartmentimage_set.first().image,
-        } for x in Apartments.objects.all().order_by('-locationID__streetName')]
+        } for x in Apartments.objects.all().order_by('-locationID__streetName').filter(forSale=True)]
         return JsonResponse({'data': apartments})
 
     # get the Json, if they search by name asc
@@ -114,7 +114,7 @@ def all_listing(request):
             'yearBuild': x.yearBuild,
             'description': x.description,
             'firstImage': x.apartmentimage_set.first().image,
-        } for x in Apartments.objects.all().order_by('locationID__streetName')]
+        } for x in Apartments.objects.all().order_by('locationID__streetName').filter(forSale=True)]
         return JsonResponse({'data': apartments})
 
     #get the Json, to filter by postalCode
@@ -133,17 +133,17 @@ def all_listing(request):
         } for x in Apartments.objects.filter(locationID__postalCode__exact=search_postal, forSale=True)]
         return JsonResponse({'data': apartments})
 
-    context = {'apartments': Apartments.objects.all()}
+    context = {'apartments': Apartments.objects.all().filter(forSale=True)}
     return render(request, 'apartments/all_listing.html', context)
 
 
 def all_listing_by_price(request):
-    context = {'apartments': Apartments.objects.all().order_by('-price')}
+    context = {'apartments': Apartments.objects.all().order_by('-price').filter(forSale=True)}
     return render(request, 'apartments/all_listing.html', context)
 
 
 def all_listing_by_name(request):
-    context = {'apartments': Apartments.objects.all().order_by('locationID__streetName')}
+    context = {'apartments': Apartments.objects.all().order_by('locationID__streetName').filter(forSale=True)}
     return render(request, 'apartments/all_listing.html', context)
 
 
@@ -200,7 +200,7 @@ def change_price(request, id):
 
 
 def get_three_random_apartments(request):
-    apartmentsList = Apartments.objects.all()
+    apartmentsList = Apartments.objects.all().filter(forSale=True)
     apartments = []
     for apartment in apartmentsList:
         apartments.append({"id": apartment.id,
@@ -222,7 +222,7 @@ def get_three_random_apartments(request):
 
 
 def get_newest_apartment(request):
-    apartment_list = Apartments.objects.all()
+    apartment_list = Apartments.objects.all().filter(forSale=True)
     apartment_new = sorted(apartment_list, key=operator.attrgetter('yearBuild'))[::-1][0]
 
     apartment_image = []
