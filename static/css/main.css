@@ -1,31 +1,12 @@
 #body-color {
-    background-color: darkslategrey;
+    background-color: #f3f9fb;
 }
 
 .navbar-light {
-    background: linear-gradient(180deg, #087cdb, #31648e, #544e9f, #494394);
-    background-size: 800% 800%;
-
-    -webkit-animation: TitleAnimation 30s ease infinite;
-    -moz-animation: TitleAnimation 30s ease infinite;
-    animation: TitleAnimation 30s ease infinite;
+    background-color: #dadddf;
+    border-bottom: 1px solid #738598;
 }
 
-@-webkit-keyframes TitleAnimation {
-    0%{background-position:50% 0%}
-    50%{background-position:51% 100%}
-    100%{background-position:50% 0%}
-}
-@-moz-keyframes TitleAnimation {
-    0%{background-position:50% 0%}
-    50%{background-position:51% 100%}
-    100%{background-position:50% 0%}
-}
-@keyframes TitleAnimation {
-    0%{background-position:50% 0%}
-    50%{background-position:51% 100%}
-    100%{background-position:50% 0%}
-}
 .room-for-navbar {
     margin-top: 20px;
 }
