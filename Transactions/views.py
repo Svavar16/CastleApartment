@@ -43,3 +43,14 @@ def review(request, apartment_id, payment_id=None):
             'credit_card': credit_card.cardNumber[-4:],
         })
     return render(request, 'apartments/index.html')
+
+
+def list_transactions(request):
+    transactions = Transactions.objects.all()
+    return render(request, 'Transactions/archive.html', {
+        'transactions': transactions
+    })
+
+
+def transaction_details(request, id):
+    pass

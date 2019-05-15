@@ -103,10 +103,3 @@ def change_password(request):
     return render(request, 'User/change_password.html', {
         'form': PasswordChangeForm(user)
     })
-
-
-def list_transactions(request):
-    transactions = Transactions.objects.all()
-    return render(request, 'Transactions/archive.html', {
-        'transactions': transactions
-    })
