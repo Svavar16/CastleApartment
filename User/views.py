@@ -9,6 +9,7 @@ from User.models import ProfileImage
 from User.forms.edit_profile import EditProfileForm, EditImageForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
+from Transactions.models import Transactions
 
 
 def register(request):
@@ -103,3 +104,9 @@ def change_password(request):
         'form': PasswordChangeForm(user)
     })
 
+
+def list_transactions(request):
+    transactions = Transactions.objects.all()
+    return render(request, 'Transactions/archive.html', {
+        'transactions': transactions
+    })
