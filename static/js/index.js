@@ -10,7 +10,8 @@ $(document).ready(function () {
             type: 'GET',
             success: function (data) {
                 $.each(data, function (index, element) {
-                    res += "<div class=\"carousel-item \">\n" +
+                    if (i == 1) {
+                        res += "<div class=\"carousel-item active \">\n" +
                         "<a href='/apartments/" + data[index].id + "'>" +
                         "                <img alt='apartment image' width='400' height='600' src=\" " + data[index].first_image + " \" class=\"d-block w-100\" alt=\"...\">\n" +
                         "                <div class=\"carousel-caption d-none d-md-block\" style='background-color: rgba(0,0,0,0.5)'>\n" +
@@ -20,6 +21,20 @@ $(document).ready(function () {
                         "                </div>\n" +
                         "</a>" +
                         "                \n";
+                    }
+                    else {
+                        res += "<div class=\"carousel-item \">\n" +
+                        "<a href='/apartments/" + data[index].id + "'>" +
+                        "                <img alt='apartment image' width='400' height='600' src=\" " + data[index].first_image + " \" class=\"d-block w-100\" alt=\"...\">\n" +
+                        "                <div class=\"carousel-caption d-none d-md-block\" style='background-color: rgba(0,0,0,0.5)'>\n" +
+                        "              <h5>" + data[index].locationID_streetname + " " + data[index].locationID_houseNum + "</h5>\n" +
+                        "              <p>" + data[index].description + "</p>\n" +
+                        "                </div>\n" +
+                        "                </div>\n" +
+                        "</a>" +
+                        "                \n";
+                    }
+
 
                     if (i < data.length ) {
                         carres += "<li data-target=\"#carouselExampleCaptions\" data-slide-to=\"" + i +  "\"></li>\n";
