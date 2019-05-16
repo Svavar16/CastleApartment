@@ -8,4 +8,5 @@ urlpatterns = [
     path('review/<int:apartment_id>', views.review, name='review_select'),
     path('list_transactions', views.list_transactions, name='list_transactions'),
     path('list_transactions/<int:id>', views.transaction_details, name='transaction_details'),
+    path('my_transactions', views.personal_transactions, name='my_transactions')
 ]
