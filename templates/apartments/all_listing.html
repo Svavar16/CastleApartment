@@ -26,7 +26,7 @@
                     </div>
                     <div class="col">
                         <select id="search-box-postal" class="form-control form-control-lg form-control-borderless">
-                            <option>Select a postal code...</option>
+                            <option id="postal-code-main-drop">Select a postal code...</option>
                             {% for apartment in apartments %}
                                 <option value="{{ apartment.locationID.id }}">{{ apartment.locationID.postalCode }}</option>
                             {% endfor %}
@@ -53,7 +53,9 @@
         {% for apartment in apartments %}
             <div class="col-lg-4 house-listing">
                 <div class="card card-width">
-                    <img src="{{ apartment.apartmentimage_set.first.image }}" class="card-img-top card-img-size" alt="Apartment Image">
+                    <a href="{{ apartment.id }}" class="card-link">
+                        <img src="{{ apartment.apartmentimage_set.first.image }}" class="card-img-top card-img-size" alt="Apartment Image">
+                    </a>
                     <div class="card-body">
                         <h5 class="card-title">{{ apartment.locationID.streetName }} {{ apartment.locationID.houseNumber }}</h5>
                         <p class="card-text">{{ apartment.description|truncatechars:100 }}</p>
@@ -63,9 +65,6 @@
                         <li class="list-group-item">Size: {{ apartment.size }} m<sup>2</sup></li>
                         <li class="list-group-item">Year Build: {{ apartment.yearBuild }}</li>
                     </ul>
-                    <div class="card-body">
-                        <a href="{{ apartment.id }}" class="card-link">More Details</a>
-                    </div>
                 </div>
             </div>
         {% endfor %}
