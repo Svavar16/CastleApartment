@@ -20,7 +20,7 @@
                     <p>Animals: {% if apartments.animalsAllowed %} Yes {% else %} No {% endif %}</p>
                     <p>Garage: {% if apartments.garage%} Yes {% else %} No {% endif %}</p>
                     <p>Seller: <a href="{% url 'user_profile' id=apartments.sellerID.id %}">{{ apartments.sellerID.first_name }} {{ sellerID.first_name }}</a></p>
-                    <p class="single-ap-desc card-text ">Description: {{ apartments.description }}</p>
+                    <p>Description: {{ apartments.description }}</p>
                     <br>
                 </div>
             </div>
