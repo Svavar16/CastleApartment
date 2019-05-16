@@ -40,6 +40,13 @@
                     </button>
                 </a>
             </div>
+            <div class="col-lg-4">
+                <a href="{% url 'my_transactions' %}">
+                    <button class="sell-house-btn">
+                        My transactions
+                    </button>
+                </a>
+            </div>
         {% endif %}
     </div>
     {% if profile_user.id == user.id or perms.Apartments.change_apartments%}
