@@ -88,12 +88,20 @@ def getUserProfile(request, id=None):
     if not id:
         user = request.user
         if user.is_authenticated:
-            searchitem = SearchHistory.objects.order_by('id').filter(userID=user)[::-1][:10]
+            searchitem = SearchHistory.objects.order_by('id').filter(userID=user)
+            if len(searchitem) < 10:
+                searchitem = SearchHistory.objects.order_by('id').filter(userID=user)[::-1]
+            else:
+                searchitem = SearchHistory.objects.order_by('id').filter(userID=user)[::-1][:10]
             return render(request, 'User/user_profile.html', {
                 'profile_user': user,
                 'searchHistory': searchitem,
             })
-    searchitem = SearchHistory.objects.order_by('id').filter(userID=request.user)[::-1][20]
+    searchitem = SearchHistory.objects.order_by('id').filter(userID=request.user)
+    if len(searchitem) < 20:
+        searchitem = SearchHistory.objects.order_by('id').filter(userID=request.user)[::-1]
+    else:
+        searchitem = SearchHistory.objects.order_by('id').filter(userID=request.user)[::-1][:20]
     return render(request, 'User/user_profile.html', {
         'profile_user': get_object_or_404(User, pk=id),
         'searchHistory': searchitem,
