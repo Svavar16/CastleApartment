@@ -77,6 +77,4 @@ class SearchHistory(models.Model):
     def __str__(self):
         return '{} {}'.format(self.searchItem, self.userID)
 
-    class Meta:
-        unique_together = (('searchItem', 'userID'),)
 

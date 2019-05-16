@@ -27,8 +27,9 @@ def index(request):
         } for x in Apartments.objects.filter(locationID__streetName__icontains=search_filter, forSale=True)]
         if 'search_filter' in request.GET and request.user.is_authenticated:
             search_filter = request.GET['search_filter']
-            userID = request.user
-            searchedObject = SearchHistory.objects.create(userID=userID, searchItem=search_filter)
+            streetName = "Street name: "
+            user = request.user
+            searchedObject = SearchHistory.objects.create(userID=user, searchItem=streetName + search_filter)
             searchedObject.save()
         return JsonResponse({'data': apartments})
     context = {'apartments': Apartments.objects.all().filter(forSale=True)}
@@ -67,8 +68,8 @@ def all_listing(request):
         if 'search_filter' in request.GET and request.user.is_authenticated:
             search_filter = request.GET['search_filter']
             streetName = "Street name: "
-            userID = request.user
-            searchedObject = SearchHistory.objects.create(userID=userID, searchItem=streetName + search_filter)
+            user = request.user
+            searchedObject = SearchHistory.objects.create(userID=user, searchItem=streetName + search_filter)
             searchedObject.save()
         return return_Json_responce(search_filter_list)
 

@@ -27,12 +27,12 @@ $(document).ready(function () {
             url: 'all_listing?search_filter=' + searchText,
             type: 'GET',
             success: function (resp) {
-                if (!$.trim(resp.data)) {
+                if (!$.trim(resp.data)) { //if we are unable to find anything with that name
                     $('#apartment-card-details').html('<div class="new-list-h3 sell-house house-listing">' +
                         '<h2>unable to find any listings at the searched address</h2></div>')
                     $('#search-box').val('');
                 }
-                else {
+                else { // if we found something
                     var newHTML = resp.data.map(d => {
                         return reuseHTML(d)
                     });
@@ -125,7 +125,7 @@ $(document).ready(function () {
     //search by postal code
     $('#search-Btn-postal').on('click', function (e)  {
         e.preventDefault();
-        var postal_text = $('#search-box-postal :selected').text();
+        var postal_text = $('#search-box-postal :selected').text(); // get the text that is in the dropdown list
         $.ajax({
             url: 'all_listing?search_postal=' + postal_text,
             type: 'GET',
@@ -146,6 +146,7 @@ $(document).ready(function () {
     //search function from the index
     $('#main-search-btn').on('click', function (e) {
         e.preventDefault();
+        console.log("Works");
         var searchText = $('#main-search-text').val();
         $.ajax({
             url: '?search_filter=' + searchText,
@@ -188,10 +189,8 @@ $(document).ready(function () {
         submitted = true;
     });
 
+    // showing us the 5 newest searched items
     function getsearchhistory5newest() {
-        var pathname = window.location.pathname;
-        var pathvar = pathname.charAt(pathname.length - 1)
-
         $.ajax({
             url: 'show_history/',
             datatype: 'Json',
@@ -200,15 +199,15 @@ $(document).ready(function () {
                 var newHTML = resp.data.map(d => {
                     return `<h3>${d.searchItem}</h3>`
                 });
-                $('#get_search_history_app').html(newHTML.join(''))
+                $('#get_search_history_app').html(newHTML.join(''));
             }
         })
     }
 
+    // showing the users 5 newest search, only realtors can see this
     function getsearchhistory5newestbyid() {
-        var pathname = window.location.pathname;
-        var pathvar = pathname.charAt(pathname.length - 1)
-
+        var pathname = window.location.pathname; // getting the path at the window
+        var pathvar = pathname.charAt(pathname.length - 1); // get the id and then add that to the ajax
         $.ajax({
             url: pathvar + '/show_history/',
             datatype: 'Json',
