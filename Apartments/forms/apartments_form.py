@@ -4,7 +4,12 @@ from Apartments.models import Apartments, Location
 
 
 class ApartmentsCreateForm(ModelForm):
-    image = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    image1 = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    image2 = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    image3 = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    image4 = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    image5 = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+
     locationApartment = forms.NumberInput()
 
     class Meta:
