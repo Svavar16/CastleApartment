@@ -179,3 +179,10 @@ def get_newest_apartment(request):
     return JsonResponse(apartment_image, safe=False)
 
 
+def get_all_apartment_images(request, id):
+    apartment_images = ApartmentImage.objects.all().filter(apartmentID=id)
+    apartment_images_ret = []
+    for image in apartment_images:
+        apartment_images_ret.append({"image": image.image})
+    return JsonResponse(apartment_images_ret, safe=False)
+
