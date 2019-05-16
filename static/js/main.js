@@ -123,23 +123,23 @@ $(document).ready(function () {
     });
 
     //search by postal code
-    $('#search-Btn-postal').on('click', function (e) {
+    $('#search-Btn-postal').on('click', function (e)  {
         e.preventDefault();
         var postal_text = $('#search-box-postal').val();
-        console.log(postal_text);
         $.ajax({
             url: 'all_listing?search_postal=' + postal_text,
             type: 'GET',
             success: function (resp) {
                 if (!$.trim(resp.data)) {
-                    $('#Index-bottom-row-search-function').html('<div class="new-list-h3 sell-house house-listing"><h2>unable to find any listings at the searched post code</h2></div>')
+                    $('#apartment-card-details').html('<div class="new-list-h3 sell-house house-listing">' +
+                        '<h2>unable to find any listings at the searched post code</h2></div>');
                     $('#search-box-postal').val('');
                 }
                 else {
                     var newHTML = resp.data.map(d => {
                         return reuseHTML(d)
                     });
-                    $('#Index-bottom-row-search-function').html(newHTML.join(''));
+                    $('#apartment-card-details').html(newHTML.join(''));
                     $('#search-box-postal').val('');
                 }
             },

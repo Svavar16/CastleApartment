@@ -66,8 +66,9 @@ def all_listing(request):
         search_filter_list = Apartments.objects.filter(locationID__streetName__icontains=search_filter, forSale=True)
         if 'search_filter' in request.GET and request.user.is_authenticated:
             search_filter = request.GET['search_filter']
+            streetName = "Street name: "
             userID = request.user
-            searchedObject = SearchHistory.objects.create(userID=userID, searchItem=search_filter)
+            searchedObject = SearchHistory.objects.create(userID=userID, searchItem=streetName + search_filter)
             searchedObject.save()
         return return_Json_responce(search_filter_list)
 
@@ -85,6 +86,12 @@ def all_listing(request):
     if 'search_postal' in request.GET:
         search_postal = request.GET['search_postal']
         search_postal_list = Apartments.objects.filter(locationID__postalCode__exact=search_postal, forSale=True)
+        if 'search_postal' in request.GET and request.user.is_authenticated:
+            search_postal = request.GET['search_postal']
+            postal_code = "Postal code: "
+            userID = request.user
+            searchedObject = SearchHistory.objects.create(userID=userID, searchItem=postal_code + search_postal)
+            searchedObject.save()
         return return_Json_responce(search_postal_list)
 
     context = {'apartments': Apartments.objects.all().filter(forSale=True)}
