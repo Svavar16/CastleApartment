@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     function getThreeRandomApartments() {
         var res = "";
+        var carres = "<li data-target=\"#carouselExampleCaptions\" data-slide-to=\"0\" class=\"active\"></li>\n";
         $.ajax({
             url: 'get_three_random_apartments/',
             datatype: 'json',
@@ -18,9 +19,14 @@ $(document).ready(function () {
                         "                </div>\n" +
                         "</a>" +
                         "                \n";
+                    var i = 1;
+                    if (i != data.length) {
+                        carres += "<li data-target=\"#carouselExampleCaptions\" data-slide-to=\"" + i +  "\"></li>";
+                    }
                 });
 
                 $('#get_three_elements_app').append(res);
+                $('#carres_app').append(carres);
 
             }
         })
