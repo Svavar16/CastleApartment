@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, get_object_or_404
 from Apartments.models import Apartments
 from django.contrib.auth.models import User
@@ -45,6 +46,7 @@ def review(request, apartment_id, payment_id=None):
     return render(request, 'apartments/index.html')
 
 
+@permission_required('Transactions.can_view_transactions')
 def list_transactions(request):
     transactions = Transactions.objects.all()
     return render(request, 'Transactions/archive.html', {
