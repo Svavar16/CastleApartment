@@ -98,7 +98,6 @@ def all_listing(request):
     context = {'apartments': Apartments.objects.all().filter(forSale=True)}
     return render(request, 'apartments/all_listing.html', context)
 
-
 def get_apartment_by_id(request, id):
     return render(request, 'apartments/single_apartment.html', {
         'apartments': get_object_or_404(Apartments, pk=id)
@@ -166,7 +165,7 @@ def get_three_random_apartments(request):
 
 def get_newest_apartment(request):
     apartment_list = Apartments.objects.all().filter(forSale=True)
-    apartment_new = sorted(apartment_list, key=operator.attrgetter('yearBuild'))[::-1][0]
+    apartment_new = sorted(apartment_list, key=operator.attrgetter('id'))[::-1][0]
 
     apartment_image = []
     apartment_image.append({"image": apartment_new.apartmentimage_set.first().image,

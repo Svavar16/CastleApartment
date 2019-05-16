@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    function getsearchhistory5newest() {
+    /*function getsearchhistory5newest() {
         var pathname = window.location.pathname;
         var pathvar = pathname.charAt(pathname.length - 1);
 
@@ -14,7 +14,7 @@ $(document).ready(function () {
                 $('#get_search_history_app').html(newHTML.join(''))
             }
         })
-    }
+    }*/
 
     function getsearchhistory5newestbyid(id) {
         var pathname = window.location.pathname;
@@ -33,4 +33,7 @@ $(document).ready(function () {
         })
     }
 
-})
+    //getsearchhistory5newest();
+    getsearchhistory5newestbyid();
+
+});

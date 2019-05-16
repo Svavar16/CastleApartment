@@ -12,6 +12,5 @@ urlpatterns = [
     path('edit_profile', views.editProfile, name='edit_profile'),
     path('change_image', views.editImage, name='change_image'),
     path('change_password', views.change_password, name='change_password'),
-    path('show_history/', views.get_search_history, name='show_search_history'),
     path('profile/<int:id>/show_history/', views.get_search_history_by_id, name='show_search_history_by_id'),
 ]

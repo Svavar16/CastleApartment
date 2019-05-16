@@ -88,11 +88,15 @@ def getUserProfile(request, id=None):
     if not id:
         user = request.user
         if user.is_authenticated:
+            searchitem = SearchHistory.objects.order_by('id').filter(userID=user)[::-1][:10]
             return render(request, 'User/user_profile.html', {
-                'profile_user': user
+                'profile_user': user,
+                'searchHistory': searchitem,
             })
+    searchitem = SearchHistory.objects.order_by('id').filter(userID=request.user)[::-1][20]
     return render(request, 'User/user_profile.html', {
-        'profile_user': get_object_or_404(User, pk=id)
+        'profile_user': get_object_or_404(User, pk=id),
+        'searchHistory': searchitem,
     })
 
 
@@ -109,19 +113,6 @@ def change_password(request):
         'form': PasswordChangeForm(user)
     })
 
-
-def get_search_history(request):
-    user = request.user
-    context = SearchHistory.objects.filter(userID=user.id)
-    context_sort = sorted(context, key=operator.attrgetter('id'))[::-1]
-    searchlist = []
-    for item in context_sort:
-        searchlist.append({
-                            'id': item.id,
-                            'searchItem': item.searchItem,
-                            'userID': item.userID.id,
-                        })
-    return JsonResponse({'data': searchlist}, safe=False)
 
 def get_search_history_by_id(request, id):
     user = request.user

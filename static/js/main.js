@@ -1,4 +1,39 @@
 $(document).ready(function () {
+    // showing us the 5 newest searched items
+    /*function getsearchhistory5newest() {
+        $.ajax({
+            url: 'show_history/',
+            datatype: 'Json',
+            type: 'GET',
+            success:function (resp) {
+                var newHTML = resp.data.map(d => {
+                    return `<h3>${d.searchItem}</h3>`
+                });
+                $('#get_search_history_app').html(newHTML.join(''));
+            }
+        })
+    }*/
+
+    // showing the users 5 newest search, only realtors can see this
+    function getsearchhistory5newestbyid() {
+        var pathname = window.location.pathname; // getting the path at the window
+        var pathvar = pathname.charAt(pathname.length - 1); // get the id and then add that to the ajax
+        $.ajax({
+            url: pathvar + '/show_history/',
+            datatype: 'Json',
+            type: 'GET',
+            success:function (resp) {
+                var newHTML = resp.data.map(d => {
+                    return `<h3>${d.searchItem}</h3>`
+                });
+                $('#get_search_history_app').html(newHTML.join(''))
+            }
+        })
+    }
+
+    //getsearchhistory5newest();
+    getsearchhistory5newestbyid();
+
     function reuseHTML(data) {
         return `<div class="col-lg-4 house-listing">
                                 <div class="card">
@@ -188,39 +223,4 @@ $(document).ready(function () {
     $('form').submit(function () {
         submitted = true;
     });
-
-    // showing us the 5 newest searched items
-    function getsearchhistory5newest() {
-        $.ajax({
-            url: 'show_history/',
-            datatype: 'Json',
-            type: 'GET',
-            success:function (resp) {
-                var newHTML = resp.data.map(d => {
-                    return `<h3>${d.searchItem}</h3>`
-                });
-                $('#get_search_history_app').html(newHTML.join(''));
-            }
-        })
-    }
-
-    // showing the users 5 newest search, only realtors can see this
-    function getsearchhistory5newestbyid() {
-        var pathname = window.location.pathname; // getting the path at the window
-        var pathvar = pathname.charAt(pathname.length - 1); // get the id and then add that to the ajax
-        $.ajax({
-            url: pathvar + '/show_history/',
-            datatype: 'Json',
-            type: 'GET',
-            success:function (resp) {
-                var newHTML = resp.data.map(d => {
-                    return `<h3>${d.searchItem}</h3>`
-                });
-                $('#get_search_history_app').html(newHTML.join(''))
-            }
-        })
-    }
-
-    getsearchhistory5newest();
-    getsearchhistory5newestbyid();
 });
