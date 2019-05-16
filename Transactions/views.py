@@ -1,4 +1,5 @@
-from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.decorators import permission_required, login_required
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from Apartments.models import Apartments
 from django.contrib.auth.models import User
@@ -54,9 +55,18 @@ def list_transactions(request):
     })
 
 
+@permission_required('Transactions.can_view_transactions')
 def transaction_details(request, id):
     transaction = get_object_or_404(Transactions, pk=id)
     return render(request, 'Transactions/single_transaction.html', {
         'transaction': transaction,
         'card_number': transaction.payment.cardNumber[-4:]
+    })
+
+@login_required
+def personal_transactions(request):
+    user = request.user
+    transactions = Transactions.objects.filter(Q(seller=user) | Q(buyer=user))
+    return render(request, 'Transactions/archive.html', {
+        'transactions': transactions,
     })
