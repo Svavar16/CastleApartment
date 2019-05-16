@@ -3,6 +3,10 @@ from User.models import CardDetails
 
 
 class CreateCardForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(CreateCardForm, self).__init__(*args, **kwargs)
+        self.fields['dateOfExpire'].label = 'Expiration Date: YYYY-MM-DD:'
+
     class Meta:
         model = CardDetails
         exclude = ['id', 'owner']
