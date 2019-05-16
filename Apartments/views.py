@@ -117,8 +117,11 @@ def create_apartment(request):
             apartment.sellerID = request.user
             location.save()
             apartment.save()
-            apartment_image = ApartmentImage(image=request.POST['image'], apartmentID=apartment)
-            apartment_image.save()
+            for i in range(1, 6):
+                image = 'image' + str(i)
+                if request.POST[image] != '':
+                    apartment_image = ApartmentImage(image=request.POST[image], apartmentID=apartment)
+                    apartment_image.save()
             return redirect('apartment-index')
     else:
         apartment_form = ApartmentsCreateForm()
