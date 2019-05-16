@@ -42,11 +42,13 @@
             </div>
         {% endif %}
     </div>
-    <h2>{{ profile_user.first_name }} most recent searches</h2>
-    <div class="row">
-        <div id="get_search_history_app">
+    {% if profile_user.id == user.id %}
+        <h2>{{ profile_user.first_name }} most recent searches</h2>
+        <div class="row">
+            <div id="get_search_history_app">
 
+            </div>
         </div>
-    </div>
+    {% endif %}
 {% endblock %}
 
