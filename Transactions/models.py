@@ -18,3 +18,6 @@ class Transactions(models.Model):
                                                        self.seller.first_name,
                                                        self.seller.last_name)
         return ret_str
+
+    class Meta:
+        permissions = (('can_view_transactions', 'Can View Transactions'),)
