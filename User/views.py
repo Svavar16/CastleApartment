@@ -113,7 +113,7 @@ def change_password(request):
 def get_search_history(request):
     user = request.user
     context = SearchHistory.objects.filter(userID=user.id)
-    context_sort = sorted(context, key=operator.attrgetter('id'))[::-1][:5]
+    context_sort = sorted(context, key=operator.attrgetter('id'))[::-1]
     searchlist = []
     for item in context_sort:
         searchlist.append({
