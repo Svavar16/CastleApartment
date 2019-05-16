@@ -1,3 +1,5 @@
+import operator
+
 from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -110,9 +112,10 @@ def change_password(request):
 
 def get_search_history(request):
     user = request.user
-    context = SearchHistory.objects.filter(userID=user.id)[::-5]
+    context = SearchHistory.objects.filter(userID=user.id)
+    context_sort = sorted(context, key=operator.attrgetter('id'))[::-1][:5]
     searchlist = []
-    for item in context:
+    for item in context_sort:
         searchlist.append({
                             'id': item.id,
                             'searchItem': item.searchItem,
