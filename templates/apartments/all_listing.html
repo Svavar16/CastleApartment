@@ -25,7 +25,12 @@
                             <i class="fas fa-search h4 text-body"></i>
                     </div>
                     <div class="col">
-                        <input class="form-control form-control-lg form-control-borderless" type="search" id="search-box-postal" placeholder="Enter a postal code...">
+                        <select id="search-box-postal" class="form-control form-control-lg form-control-borderless">
+                            <option>Select a postal code...</option>
+                            {% for apartment in apartments %}
+                                <option value="{{ apartment.locationID.id }}">{{ apartment.locationID.postalCode }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
                     <!--end of col-->
                     <div class="col-auto">
