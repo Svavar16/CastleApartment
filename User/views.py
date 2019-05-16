@@ -122,3 +122,16 @@ def get_search_history(request):
                             'userID': item.userID.id,
                         })
     return JsonResponse({'data': searchlist}, safe=False)
+
+def get_search_history_by_id(request, id):
+    user = request.user
+    context = SearchHistory.objects.filter(userID=id)
+    context_sort = sorted(context, key=operator.attrgetter('id'))[::-1]
+    searchlist = []
+    for item in context_sort:
+        searchlist.append({
+                            'id': item.id,
+                            'searchItem': item.searchItem,
+                            'userID': item.userID.id,
+                        })
+    return JsonResponse({'data': searchlist}, safe=False)
