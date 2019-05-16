@@ -36,8 +36,7 @@ def index(request):
 
 
 def all_listing(request):
-    # get the Json if they are searching by price
-    if 'arrange_by_price_asc' in request.GET:
+    def return_Json_responce(data):
         apartments = [{
             'id': x.id,
             'price': x.price,
@@ -48,90 +47,45 @@ def all_listing(request):
             'yearBuild': x.yearBuild,
             'description': x.description,
             'firstImage': x.apartmentimage_set.first().image,
-        } for x in Apartments.objects.all().order_by('-price').filter(forSale=True)]
+        } for x in data]
         return JsonResponse({'data': apartments})
 
     # get the Json if they are searching by price
+    if 'arrange_by_price_asc' in request.GET:
+        arrange_by_price_asc = Apartments.objects.all().order_by('-price').filter(forSale=True)
+        return return_Json_responce(arrange_by_price_asc)
+
+    # get the Json if they are searching by price
     if 'arrange_by_price_desc' in request.GET:
-        apartments = [{
-            'id': x.id,
-            'price': x.price,
-            'size': x.size,
-            'locationID': x.locationID.id,
-            'locationID_streetName': x.locationID.streetName,
-            'locationID_houseNumber': x.locationID.houseNumber,
-            'yearBuild': x.yearBuild,
-            'description': x.description,
-            'firstImage': x.apartmentimage_set.first().image,
-        } for x in Apartments.objects.all().order_by('price').filter(forSale=True)]
-        return JsonResponse({'data': apartments})
+        arrange_by_price_desc = Apartments.objects.all().order_by('price').filter(forSale=True)
+        return return_Json_responce(arrange_by_price_desc)
 
     #get the Json if they are searching for a name
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
-        apartments = [{
-            'id': x.id,
-            'price': x.price,
-            'size': x.size,
-            'locationID': x.locationID.id,
-            'locationID_streetName': x.locationID.streetName,
-            'locationID_houseNumber': x.locationID.houseNumber,
-            'yearBuild': x.yearBuild,
-            'description': x.description,
-            'firstImage': x.apartmentimage_set.first().image,
-        } for x in Apartments.objects.filter(locationID__streetName__icontains=search_filter, forSale=True)]
+        search_filter_list = Apartments.objects.filter(locationID__streetName__icontains=search_filter, forSale=True)
         if 'search_filter' in request.GET and request.user.is_authenticated:
             search_filter = request.GET['search_filter']
             userID = request.user
             searchedObject = SearchHistory.objects.create(userID=userID, searchItem=search_filter)
             searchedObject.save()
-        return JsonResponse({'data': apartments})
+        return return_Json_responce(search_filter_list)
 
     # get the Json, if they search by name asc
     if 'sort_name_asc' in request.GET:
-        apartments = [{
-            'id': x.id,
-            'price': x.price,
-            'size': x.size,
-            'locationID': x.locationID.id,
-            'locationID_streetName': x.locationID.streetName,
-            'locationID_houseNumber': x.locationID.houseNumber,
-            'yearBuild': x.yearBuild,
-            'description': x.description,
-            'firstImage': x.apartmentimage_set.first().image,
-        } for x in Apartments.objects.all().order_by('-locationID__streetName').filter(forSale=True)]
-        return JsonResponse({'data': apartments})
+        sort_name_asc = Apartments.objects.all().order_by('-locationID__streetName').filter(forSale=True)
+        return return_Json_responce(sort_name_asc)
 
     # get the Json, if they search by name asc
     if 'sort_name_desc' in request.GET:
-        apartments = [{
-            'id': x.id,
-            'price': x.price,
-            'size': x.size,
-            'locationID': x.locationID.id,
-            'locationID_streetName': x.locationID.streetName,
-            'locationID_houseNumber': x.locationID.houseNumber,
-            'yearBuild': x.yearBuild,
-            'description': x.description,
-            'firstImage': x.apartmentimage_set.first().image,
-        } for x in Apartments.objects.all().order_by('locationID__streetName').filter(forSale=True)]
-        return JsonResponse({'data': apartments})
+        sort_name_desc = Apartments.objects.all().order_by('locationID__streetName').filter(forSale=True)
+        return return_Json_responce(sort_name_desc)
 
     #get the Json, to filter by postalCode
     if 'search_postal' in request.GET:
         search_postal = request.GET['search_postal']
-        apartments = [{
-            'id': x.id,
-            'price': x.price,
-            'size': x.size,
-            'locationID': x.locationID.id,
-            'locationID_streetName': x.locationID.streetName,
-            'locationID_houseNumber': x.locationID.houseNumber,
-            'yearBuild': x.yearBuild,
-            'description': x.description,
-            'firstImage': x.apartmentimage_set.first().image,
-        } for x in Apartments.objects.filter(locationID__postalCode__exact=search_postal, forSale=True)]
-        return JsonResponse({'data': apartments})
+        search_postal_list = Apartments.objects.filter(locationID__postalCode__exact=search_postal, forSale=True)
+        return return_Json_responce(search_postal_list)
 
     context = {'apartments': Apartments.objects.all().filter(forSale=True)}
     return render(request, 'apartments/all_listing.html', context)
