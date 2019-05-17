@@ -93,6 +93,9 @@
     background-color: white;
     display: inline-block;
 }
+.single-apartment-jumb {
+    width: 80%;
+}
 .single-ap-desc {
     width: 600px;
     word-wrap: break-word;

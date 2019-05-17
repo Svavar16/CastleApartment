@@ -1,46 +1,30 @@
 $(document).ready(function () {
-    // showing us the 5 newest searched items
-    /*function getsearchhistory5newest() {
-        $.ajax({
-            url: 'show_history/',
-            datatype: 'Json',
-            type: 'GET',
-            success:function (resp) {
-                var newHTML = resp.data.map(d => {
-                    return `<h3>${d.searchItem}</h3>`
-                });
-                $('#get_search_history_app').html(newHTML.join(''));
-            }
-        })
-    }*/
-
-    // showing the users 5 newest search, only realtors can see this
-    function getsearchhistory5newestbyid() {
-        var pathname = window.location.pathname; // getting the path at the window
-        var pathvar = pathname.charAt(pathname.length - 1); // get the id and then add that to the ajax
-        $.ajax({
-            url: pathvar + '/show_history/',
-            datatype: 'Json',
-            type: 'GET',
-            success:function (resp) {
-                var newHTML = resp.data.map(d => {
-                    return `<h3>${d.searchItem}</h3>`
-                });
-                $('#get_search_history_app').html(newHTML.join(''))
-            }
-        })
-    }
-
-    //getsearchhistory5newest();
-    getsearchhistory5newestbyid();
-
     function reuseHTML(data) {
-        return `<div class="col-lg-4 house-listing">
+        if (data.description.length < 100) {
+            return `<div class="col-lg-4 house-listing">
                                 <div class="card">
                                     <img src="${data.firstImage}" class="card-img-top card-img-size card-img-size" alt="Apartment Image">
                                     <div class="card-body">
                                         <h5 class="card-title">${data.locationID_streetName} ${data.locationID_houseNumber}</h5>
                                         <p class="card-text">${data.description}</p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Price: ${data.price} Kr</li>
+                                        <li class="list-group-item">Size: ${data.size} m<sup>2</sup></li>
+                                        <li class="list-group-item">Year Build: ${data.yearBuild}</li>
+                                    </ul>
+                                    <div class="card-body">
+                                        <a href="${data.id}" class="card-link">More Details</a>
+                                    </div>
+                                </div>
+                               </div>`
+        }
+        return `<div class="col-lg-4 house-listing">
+                                <div class="card">
+                                    <img src="${data.firstImage}" class="card-img-top card-img-size card-img-size" alt="Apartment Image">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${data.locationID_streetName} ${data.locationID_houseNumber}</h5>
+                                        <p class="card-text">${data.description.substring(0, 100)}</p>
                                     </div>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item">Price: ${data.price} Kr</li>
