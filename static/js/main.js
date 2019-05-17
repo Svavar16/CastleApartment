@@ -3,7 +3,7 @@ $(document).ready(function () {
         if (data.description.length < 100) {
             return `<div class="col-lg-4 house-listing">
                                 <div class="card">
-                                    <img src="${data.firstImage}" class="card-img-top card-img-size card-img-size" alt="Apartment Image">
+                                    <a href="${data.id}" class="card-link"><img src="${data.firstImage}" class="card-img-top card-img-size card-img-size" alt="Apartment Image"></a>
                                     <div class="card-body">
                                         <h5 class="card-title">${data.locationID_streetName} ${data.locationID_houseNumber}</h5>
                                         <p class="card-text">${data.description}</p>
@@ -13,15 +13,12 @@ $(document).ready(function () {
                                         <li class="list-group-item">Size: ${data.size} m<sup>2</sup></li>
                                         <li class="list-group-item">Year Build: ${data.yearBuild}</li>
                                     </ul>
-                                    <div class="card-body">
-                                        <a href="${data.id}" class="card-link">More Details</a>
-                                    </div>
                                 </div>
                                </div>`
         }
         return `<div class="col-lg-4 house-listing">
                                 <div class="card">
-                                    <img src="${data.firstImage}" class="card-img-top card-img-size card-img-size" alt="Apartment Image">
+                                    <a href="${data.id}" class="card-link"><img src="${data.firstImage}" class="card-img-top card-img-size card-img-size" alt="Apartment Image"></a>
                                     <div class="card-body">
                                         <h5 class="card-title">${data.locationID_streetName} ${data.locationID_houseNumber}</h5>
                                         <p class="card-text">${data.description.substring(0, 100)}</p>
@@ -31,9 +28,6 @@ $(document).ready(function () {
                                         <li class="list-group-item">Size: ${data.size} m<sup>2</sup></li>
                                         <li class="list-group-item">Year Build: ${data.yearBuild}</li>
                                     </ul>
-                                    <div class="card-body">
-                                        <a href="${data.id}" class="card-link">More Details</a>
-                                    </div>
                                 </div>
                                </div>`
     }
