@@ -50,7 +50,7 @@
             </div>
         {% endif %}
     </div>
-    {% if profile_user.id == request.user.id or perms.Apartments.change_apartments %}
+    {% if profile_user.id == request.user.id or perms.Apartments.others_search_history %}
         <h2 class="house-listing">{{ profile_user.first_name }} most recent searches</h2>
         <div class="house-listing">
             {% for search in searchHistory %}

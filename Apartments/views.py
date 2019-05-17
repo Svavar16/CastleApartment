@@ -137,7 +137,7 @@ def delete_apartment(request, id):
     return redirect('apartment-index')
 
 
-@permission_required('Apartments.change_apartments')
+@permission_required('Apartments.can_change_price')
 def change_price(request, id):
     if request.method == 'POST':
         price_form = ChangePriceForm(data=request.POST)

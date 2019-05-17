@@ -41,7 +41,7 @@ class Apartments(models.Model):
     forSale = models.BooleanField()
 
     class Meta:
-        permissions = (('can change_price', 'Can change price'),)
+        permissions = (('can_change_price', 'Can change price'),)
 
 
 class ApartmentImage(models.Model):
@@ -76,5 +76,9 @@ class SearchHistory(models.Model):
 
     def __str__(self):
         return '{} {}'.format(self.searchItem, self.userID)
+
+    class Meta:
+        permissions = (('others_search_history', 'Can view others search history'),)
+
 
 

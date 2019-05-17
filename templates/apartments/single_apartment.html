@@ -31,7 +31,7 @@
                     <a class="btn btn-primary buy-house-btn" href="{% url 'credit_card' apartment_id=apartments.id %}"><p class="centering-apartment-detail-p">BUY</p></a><br>
                 </div>
             {% endif %}
-            {% if perms.Apartments.change_apartments %}
+            {% if perms.Apartments.can_change_price %}
                 <div class="sell-house house-listing">
                     <a class="btn btn-primary buy-house-btn" href="{% url 'change_price' apartments.id %}"><p class="centering-apartment-detail-p">Change Price</p></a>
                 </div>
