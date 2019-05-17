@@ -97,11 +97,11 @@ def getUserProfile(request, id=None):
                 'profile_user': user,
                 'searchHistory': searchitem,
             })
-    searchitem = SearchHistory.objects.order_by('id').filter(userID=request.user)
+    searchitem = SearchHistory.objects.order_by('id').filter(userID=id)
     if len(searchitem) < 20:
-        searchitem = SearchHistory.objects.order_by('id').filter(userID=request.user)[::-1]
+        searchitem = SearchHistory.objects.order_by('id').filter(userID=id)[::-1]
     else:
-        searchitem = SearchHistory.objects.order_by('id').filter(userID=request.user)[::-1][:20]
+        searchitem = SearchHistory.objects.order_by('id').filter(userID=id)[::-1][:20]
     return render(request, 'User/user_profile.html', {
         'profile_user': get_object_or_404(User, pk=id),
         'searchHistory': searchitem,
