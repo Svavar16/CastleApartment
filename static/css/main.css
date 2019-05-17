@@ -94,10 +94,14 @@
     display: inline-block;
 }
 .single-apartment-jumb {
-    width: 80%;
+    width: 100%;
 }
 .single-ap-desc {
     width: 600px;
+    word-wrap: break-word;
+}
+.single-apartment-desc {
+    width: 500px;
     word-wrap: break-word;
 }
 .single-ap-info {

@@ -9,18 +9,18 @@
                 <img src="{{ apartments.apartmentimage_set.first.image }}" class="single-ap-img" alt="Apartment Image">
             </div>
             <div class="col-lg-6">
-                <h1>{{ apartments.locationID.streetName }} {{ apartments.locationID.houseNumber }}</h1>
-                <h3>{{ apartments.locationID.city }} {{ apartments.locationID.postalCode }}</h3>
+                <h1 class="single-apartment-desc">{{ apartments.locationID.streetName }} {{ apartments.locationID.houseNumber }}</h1>
+                <h3 class="single-apartment-desc">{{ apartments.locationID.city }} {{ apartments.locationID.postalCode }}</h3>
                 <div class="single-ap-info col-lg-12 house-listing">
-                    <p>Price: {{ apartments.price }} Kr</p>
-                    <p>Size: {{ apartments.size }} m<sup>2</sup></p>
-                    <p>Built: {{ apartments.yearBuild }}</p>
-                    <p>Rooms: {{ apartments.rooms }}</p>
-                    <p>Private Entrance: {% if apartments.privateEntrance %} Yes {% else %} No {% endif %}</p>
-                    <p>Animals: {% if apartments.animalsAllowed %} Yes {% else %} No {% endif %}</p>
-                    <p>Garage: {% if apartments.garage%} Yes {% else %} No {% endif %}</p>
-                    <p>Seller: <a href="{% url 'user_profile' id=apartments.sellerID.id %}">{{ apartments.sellerID.first_name }} {{ sellerID.first_name }}</a></p>
-                    <p>Description: {{ apartments.description }}</p>
+                    <p class="single-apartment-desc">Price: {{ apartments.price }} Kr</p>
+                    <p class="single-apartment-desc">Size: {{ apartments.size }} m<sup>2</sup></p>
+                    <p class="single-apartment-desc">Built: {{ apartments.yearBuild }}</p>
+                    <p class="single-apartment-desc">Rooms: {{ apartments.rooms }}</p>
+                    <p class="single-apartment-desc">Private Entrance: {% if apartments.privateEntrance %} Yes {% else %} No {% endif %}</p>
+                    <p class="single-apartment-desc">Animals: {% if apartments.animalsAllowed %} Yes {% else %} No {% endif %}</p>
+                    <p class="single-apartment-desc">Garage: {% if apartments.garage%} Yes {% else %} No {% endif %}</p>
+                    <p class="single-apartment-desc">Seller: <a href="{% url 'user_profile' id=apartments.sellerID.id %}">{{ apartments.sellerID.first_name }} {{ sellerID.first_name }}</a></p>
+                    <p class="single-apartment-desc">Description: {{ apartments.description }}</p>
                     <br>
                 </div>
             </div>
