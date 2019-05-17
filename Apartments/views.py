@@ -162,6 +162,10 @@ def get_three_random_apartments(request):
                            "locationID_streetname": apartment.locationID.streetName,
                            "locationID_houseNum": apartment.locationID.houseNumber,
                            "first_image": apartment.apartmentimage_set.first().image})
+    if (len(apartments) < 3):
+        return JsonResponse(apartments, safe=False)
+
+
     retval = random.sample(apartments, 3)
     return JsonResponse(retval, safe=False)
 
